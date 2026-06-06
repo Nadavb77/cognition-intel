@@ -111,10 +111,16 @@ def extract_diff_snippet(old_text: str, new_text: str, max_lines: int = 20) -> t
 
     # Find first differing line
     start = 0
+    found_diff = False
     for i, (ol, nl) in enumerate(zip(old_lines, new_lines)):
         if ol != nl:
             start = max(0, i - 2)
+            found_diff = True
             break
+
+    # If no inline diff found, the change is appended/removed at the end
+    if not found_diff and len(old_lines) != len(new_lines):
+        start = max(0, min(len(old_lines), len(new_lines)) - 2)
 
     old_snippet = "\n".join(old_lines[start : start + max_lines])
     new_snippet = "\n".join(new_lines[start : start + max_lines])

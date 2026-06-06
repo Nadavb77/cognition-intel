@@ -70,6 +70,22 @@ class TestExtractDiffSnippet:
         assert old_snip == ""
         assert new_snip == ""
 
+    def test_appended_content(self):
+        """Snippet should show the boundary where content was appended."""
+        old = "\n".join(f"line{i}" for i in range(20))
+        new = old + "\nnew_line20\nnew_line21\nnew_line22"
+        old_snip, new_snip = extract_diff_snippet(old, new)
+        # The new snippet should contain the appended lines
+        assert "new_line20" in new_snip
+
+    def test_removed_content_at_end(self):
+        """Snippet should show the boundary where content was removed."""
+        old = "\n".join(f"line{i}" for i in range(25))
+        new = "\n".join(f"line{i}" for i in range(20))
+        old_snip, new_snip = extract_diff_snippet(old, new)
+        # The old snippet should contain lines near the removal point
+        assert "line19" in old_snip or "line18" in old_snip
+
 
 class TestDiffReport:
     def test_significant_changes_filter(self):

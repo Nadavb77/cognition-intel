@@ -89,7 +89,7 @@ def call_openai(prompt: str) -> list[dict]:
 def summarize_report(report: DiffReport) -> list[dict]:
     """Summarize a diff report's significant changes via OpenAI."""
     significant = report.significant_changes
-    if not significant and not report.new_pages:
+    if not significant and not report.new_pages and not report.removed_pages:
         logger.info("No significant changes for %s", report.source)
         return []
 
