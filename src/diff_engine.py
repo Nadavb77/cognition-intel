@@ -1,7 +1,8 @@
-"""Diff engine: compare snapshots, detect changes, score importance."""
+"""Diff engine: compare snapshots, detect changes, score importance, classify."""
 
 import json
 import logging
+import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -10,6 +11,29 @@ from .normalize import normalize_markdown, strip_frontmatter
 logger = logging.getLogger(__name__)
 
 SNAPSHOTS_DIR = Path("90 - Raw Snapshots")
+
+# Change categories for classification
+CHANGE_CATEGORIES = [
+    "product",
+    "pricing",
+    "security",
+    "deployment",
+    "integration",
+    "competitor",
+    "docs-only",
+    "minor wording",
+    "unknown",
+]
+
+# Keywords for heuristic classification
+_CATEGORY_KEYWORDS: dict[str, list[str]] = {
+    "pricing": ["price", "pricing", "plan", "tier", "cost", "billing", "subscription", "credit", "free", "enterprise plan", "pro plan"],
+    "security": ["security", "auth", "sso", "rbac", "permission", "encryption", "compliance", "audit", "vulnerability", "cve"],
+    "deployment": ["deploy", "install", "setup", "self-host", "on-prem", "cloud", "docker", "kubernetes", "infrastructure"],
+    "integration": ["integrat", "plugin", "extension", "api", "sdk", "mcp", "webhook", "connect", "third-party"],
+    "competitor": ["vs", "versus", "compared", "alternative", "switch", "migrat"],
+    "product": ["feature", "launch", "release", "new", "update", "capability", "agent", "model", "performance", "benchmark"],
+}
 
 
 @dataclass
@@ -23,6 +47,7 @@ class PageChange:
     old_snippet: str
     new_snippet: str
     change_summary: str
+    category: str = "unknown"
 
 
 @dataclass
@@ -32,6 +57,7 @@ class DiffReport:
     source: str
     old_date: str
     new_date: str
+    mode: str = "local"  # "local" or "monitor"
     changes: list[PageChange] = field(default_factory=list)
     new_pages: list[str] = field(default_factory=list)
     removed_pages: list[str] = field(default_factory=list)
@@ -173,6 +199,7 @@ def diff_source(source_name: str, old_date: str | None = None, new_date: str | N
             old_snippet=old_snippet,
             new_snippet=new_snippet,
             change_summary=f"Score {score} change in {page_name}",
+            category=classify_change(old_snippet + " " + new_snippet),
         )
         report.changes.append(change)
 
@@ -196,3 +223,128 @@ def run_diff(source_names: list[str] | None = None) -> list[DiffReport]:
             reports.append(report)
 
     return reports
+
+
+# ---------------------------------------------------------------------------
+# Change classification
+# ---------------------------------------------------------------------------
+
+
+def classify_change(text: str) -> str:
+    """Classify a change into a category based on keyword heuristics.
+
+    Returns one of the CHANGE_CATEGORIES values.
+    """
+    text_lower = text.lower()
+
+    scores: dict[str, int] = {}
+    for category, keywords in _CATEGORY_KEYWORDS.items():
+        count = sum(1 for kw in keywords if kw in text_lower)
+        if count > 0:
+            scores[category] = count
+
+    if not scores:
+        # Check for minor wording vs docs-only
+        word_count = len(text.split())
+        if word_count < 30:
+            return "minor wording"
+        return "docs-only"
+
+    return max(scores, key=scores.get)  # type: ignore[arg-type]
+
+
+def score_firecrawl_diff(diff_text: str, judgment: dict | None = None) -> int:
+    """Score a Firecrawl monitor diff.
+
+    Uses Firecrawl judgment when available, falls back to diff size heuristic.
+    """
+    if judgment:
+        meaningful = judgment.get("meaningful", False)
+        confidence = judgment.get("confidence", "low")
+
+        if not meaningful:
+            return 1
+
+        if confidence == "high":
+            changes = judgment.get("meaningfulChanges", [])
+            if len(changes) >= 3:
+                return 5
+            if len(changes) >= 2:
+                return 4
+            return 3
+        elif confidence == "medium":
+            return 3
+        else:
+            return 2
+
+    # Fallback: score by diff text size
+    if not diff_text:
+        return 0
+
+    lines = [l for l in diff_text.splitlines() if l.startswith("+") or l.startswith("-")]
+    changed_lines = len(lines)
+
+    if changed_lines < 3:
+        return 1
+    elif changed_lines < 10:
+        return 2
+    elif changed_lines < 25:
+        return 3
+    elif changed_lines < 80:
+        return 4
+    else:
+        return 5
+
+
+def build_monitor_diff_report(
+    source_name: str,
+    check_result: "MonitorCheckResult",
+) -> DiffReport:
+    """Build a DiffReport from Firecrawl monitor check results.
+
+    Scores and classifies Firecrawl-reported changes rather than
+    duplicating the diff that Firecrawl already computed.
+    """
+    from .firecrawl_monitoring import MonitorCheckResult
+
+    report = DiffReport(
+        source=source_name,
+        old_date="(monitor-previous)",
+        new_date="(monitor-latest)",
+        mode="monitor",
+    )
+
+    for page in check_result.new_pages:
+        report.new_pages.append(page.url)
+
+    for page in check_result.removed_pages:
+        report.removed_pages.append(page.url)
+
+    for page in check_result.changed_pages:
+        judgment = None
+        if page.meaningful_changes:
+            judgment = {
+                "meaningful": page.is_meaningful,
+                "confidence": page.judgment_confidence,
+                "meaningfulChanges": page.meaningful_changes,
+            }
+
+        score = score_firecrawl_diff(page.diff_text, judgment)
+
+        # Build a summary from judgment or diff
+        summary = page.judgment_reason or f"Changed page: {page.url}"
+        diff_content = page.diff_text or summary
+
+        change = PageChange(
+            source=source_name,
+            page_file=page.url,
+            url=page.url,
+            score=score,
+            old_snippet="",
+            new_snippet=page.diff_text[:500] if page.diff_text else "",
+            change_summary=summary,
+            category=classify_change(diff_content),
+        )
+        report.changes.append(change)
+
+    return report

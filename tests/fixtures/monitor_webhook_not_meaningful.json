@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "type": "monitor.page",
+  "id": "check-trivial-001",
+  "data": [
+    {
+      "monitorId": "monitor-002",
+      "checkId": "check-trivial-001",
+      "url": "https://docs.example.com/footer",
+      "status": "changed",
+      "isMeaningful": false,
+      "judgment": {
+        "meaningful": false,
+        "confidence": "high",
+        "reason": "Only copyright year updated in footer.",
+        "meaningfulChanges": []
+      },
+      "diff": {
+        "text": "--- previous\n+++ current\n@@ -1 +1 @@\n-© 2025 Example Inc.\n+© 2026 Example Inc.\n"
+      },
+      "error": null
+    }
+  ]
+}

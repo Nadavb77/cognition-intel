@@ -20,14 +20,20 @@ For each significant change, output a JSON object with these fields:
 - sales_implication: How this could affect sales positioning (1 sentence)
 - question_to_validate: A question worth investigating further (1 sentence)
 - related_concepts: List of related concept names for wiki linking (e.g. ["Agent Harness", "MCP"])
+- category: One of: product, pricing, security, deployment, integration, competitor, docs-only, minor wording, unknown
 
-Return a JSON array of these objects. Be concise and high-signal."""
+Return a JSON object with a single key "changes" containing an array of these objects. Be concise and high-signal."""
 
 
 def build_change_prompt(report: DiffReport) -> str:
     """Build a prompt from a diff report's significant changes."""
     parts = [f"Source: {report.source}"]
-    parts.append(f"Compared: {report.old_date} -> {report.new_date}")
+
+    if report.mode == "monitor":
+        parts.append("Data source: Firecrawl Monitoring")
+        parts.append(f"Compared: previous snapshot -> latest check")
+    else:
+        parts.append(f"Compared: {report.old_date} -> {report.new_date}")
 
     if report.new_pages:
         parts.append(f"\nNew pages added: {', '.join(report.new_pages)}")
@@ -35,9 +41,38 @@ def build_change_prompt(report: DiffReport) -> str:
         parts.append(f"\nPages removed: {', '.join(report.removed_pages)}")
 
     for change in report.significant_changes:
-        parts.append(f"\n--- Change in {change.page_file} (score: {change.score}) ---")
-        parts.append(f"Old content:\n{change.old_snippet[:500]}")
-        parts.append(f"New content:\n{change.new_snippet[:500]}")
+        parts.append(f"\n--- Change in {change.page_file} (score: {change.score}, category: {change.category}) ---")
+        if change.old_snippet:
+            parts.append(f"Old content:\n{change.old_snippet[:500]}")
+        if change.new_snippet:
+            parts.append(f"New content / diff:\n{change.new_snippet[:500]}")
+        if change.change_summary and change.change_summary != f"Score {change.score} change in {change.page_file}":
+            parts.append(f"Firecrawl judgment: {change.change_summary}")
+
+    return "\n".join(parts)
+
+
+def build_monitor_prompt(report: DiffReport) -> str:
+    """Build a prompt specifically optimized for Firecrawl monitor results.
+
+    Uses Firecrawl judgment and diff text directly.
+    """
+    parts = [
+        f"Source: {report.source}",
+        "Data source: Firecrawl Monitoring (diffs and judgments provided by Firecrawl)",
+    ]
+
+    if report.new_pages:
+        parts.append(f"\nNew pages detected: {', '.join(report.new_pages)}")
+    if report.removed_pages:
+        parts.append(f"\nPages removed: {', '.join(report.removed_pages)}")
+
+    for change in report.significant_changes:
+        parts.append(f"\n--- {change.url} (score: {change.score}, category: {change.category}) ---")
+        if change.change_summary:
+            parts.append(f"Judgment: {change.change_summary}")
+        if change.new_snippet:
+            parts.append(f"Diff:\n{change.new_snippet[:800]}")
 
     return "\n".join(parts)
 
@@ -72,15 +107,17 @@ def call_openai(prompt: str) -> list[dict]:
     content = data["choices"][0]["message"]["content"]
     parsed = json.loads(content)
 
-    # Handle both {"changes": [...]} and [...] formats
+    # Extract the array from the response object
     if isinstance(parsed, list):
         return parsed
-    if isinstance(parsed, dict) and "changes" in parsed:
-        return parsed["changes"]
-    if isinstance(parsed, dict) and "summaries" in parsed:
-        return parsed["summaries"]
-    # Return as single-item list if it's a single dict
     if isinstance(parsed, dict):
+        # Check known keys first, then scan for any list value
+        for key in ("changes", "summaries", "items", "data", "results"):
+            if key in parsed and isinstance(parsed[key], list):
+                return parsed[key]
+        for v in parsed.values():
+            if isinstance(v, list):
+                return v
         return [parsed]
 
     return []
@@ -93,8 +130,13 @@ def summarize_report(report: DiffReport) -> list[dict]:
         logger.info("No significant changes for %s", report.source)
         return []
 
-    prompt = build_change_prompt(report)
-    logger.info("Summarizing %d changes for %s", len(significant), report.source)
+    # Use monitor-optimized prompt for Firecrawl monitor reports
+    if report.mode == "monitor":
+        prompt = build_monitor_prompt(report)
+    else:
+        prompt = build_change_prompt(report)
+
+    logger.info("Summarizing %d changes for %s (mode=%s)", len(significant), report.source, report.mode)
     return call_openai(prompt)
 
 

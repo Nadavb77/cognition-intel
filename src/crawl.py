@@ -5,7 +5,8 @@ import json
 import logging
 from datetime import date
 from pathlib import Path
-from urllib.parse import urlparse
+import hashlib
+from urllib.parse import urlparse, urlunparse
 
 import httpx
 import yaml
@@ -106,7 +107,16 @@ def crawl_tavily(url: str) -> list[dict]:
 
 
 def crawl_source(source: dict) -> list[dict]:
-    """Crawl a single source using the configured method."""
+    """Crawl a single source using the configured method.
+
+    Sources with mode=monitor are handled by firecrawl_monitoring.py
+    and should not be passed here.
+    """
+    mode = source.get("mode", "crawl")
+    if mode == "monitor":
+        logger.info("Skipping %s (mode=monitor, handled by firecrawl_monitoring)", source.get("name"))
+        return []
+
     method = source.get("crawl_method", "firecrawl")
     url = source["url"]
     logger.info("Crawling %s via %s", url, method)
@@ -126,10 +136,23 @@ def save_snapshot(source_name: str, pages: list[dict], snapshot_date: str | None
     out_dir = SNAPSHOTS_DIR / source_name / snapshot_date
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    used_slugs: set[str] = set()
     for i, page in enumerate(pages):
         url = page.get("url", f"page-{i}")
-        slug = urlparse(url).path.strip("/").replace("/", "_") or f"page-{i}"
-        slug = slug[:80]  # Truncate long slugs
+        parsed = urlparse(url)
+        slug = parsed.path.strip("/").replace("/", "_") or f"page-{i}"
+        # Disambiguate when query params exist or slug collides
+        if parsed.query:
+            suffix = hashlib.sha256(parsed.query.encode()).hexdigest()[:8]
+            slug = f"{slug}_{suffix}"
+        slug = slug[:80]
+        # Handle remaining collisions (e.g. truncation)
+        base_slug = slug
+        counter = 1
+        while slug in used_slugs:
+            slug = f"{base_slug}_{counter}"
+            counter += 1
+        used_slugs.add(slug)
 
         md_content = page.get("markdown", "")
         title = page.get("metadata", {}).get("title", slug)

@@ -1,4 +1,4 @@
-"""Weekly pipeline orchestrator: crawl -> diff -> summarize -> write."""
+"""Weekly pipeline orchestrator: crawl/monitor -> diff -> summarize -> write."""
 
 import argparse
 import logging
@@ -6,7 +6,8 @@ import sys
 from datetime import date
 
 from .crawl import load_sources, run_crawl
-from .diff_engine import run_diff
+from .diff_engine import DiffReport, build_monitor_diff_report, run_diff
+from .firecrawl_monitoring import fetch_monitor_results
 from .summarize import summarize_all
 from .write_markdown import write_digest, write_questions
 
@@ -22,36 +23,62 @@ def main(skip_crawl: bool = False) -> None:
     today = date.today().isoformat()
     logger.info("=== Weekly Intel Run: %s ===", today)
 
-    # Step 1: Crawl sources
-    if not skip_crawl:
-        logger.info("Step 1: Crawling sources...")
-        sources = load_sources()
-        snapshot_dirs = run_crawl(sources)
+    sources = load_sources()
+    crawl_sources = [s for s in sources if s.get("mode", "crawl") in ("crawl", "scrape")]
+    monitor_sources = [s for s in sources if s.get("mode") == "monitor"]
+
+    all_reports: list[DiffReport] = []
+
+    # Step 1a: Crawl non-monitor sources
+    if not skip_crawl and crawl_sources:
+        logger.info("Step 1a: Crawling %d sources...", len(crawl_sources))
+        snapshot_dirs = run_crawl(crawl_sources)
         logger.info("Crawled %d sources", len(snapshot_dirs))
+    elif crawl_sources:
+        logger.info("Step 1a: Skipping crawl (--skip-crawl)")
+
+    # Step 1b: Fetch Firecrawl monitor results
+    if monitor_sources:
+        logger.info("Step 1b: Fetching monitor results for %d sources...", len(monitor_sources))
+        monitor_results = fetch_monitor_results(monitor_sources)
+        logger.info("Got monitor results for %d sources", len(monitor_results))
+
+        for source_name, check_result in monitor_results.items():
+            report = build_monitor_diff_report(source_name, check_result)
+            if report.changes or report.new_pages or report.removed_pages:
+                all_reports.append(report)
+                logger.info(
+                    "Monitor %s: %d changes, %d new, %d removed",
+                    source_name,
+                    len(report.changes),
+                    len(report.new_pages),
+                    len(report.removed_pages),
+                )
     else:
-        logger.info("Step 1: Skipping crawl (--skip-crawl)")
+        logger.info("Step 1b: No monitor sources configured")
 
-    # Step 2: Diff against previous snapshots
-    logger.info("Step 2: Running diffs...")
-    diff_reports = run_diff()
-    logger.info("Found %d sources with changes", len(diff_reports))
+    # Step 2: Diff local snapshots (for crawl-mode sources)
+    logger.info("Step 2: Running local diffs...")
+    local_reports = run_diff()
+    all_reports.extend(local_reports)
+    logger.info("Found %d sources with local changes", len(local_reports))
 
-    significant_count = sum(len(r.significant_changes) for r in diff_reports)
+    significant_count = sum(len(r.significant_changes) for r in all_reports)
     logger.info("Total significant changes (score >= 3): %d", significant_count)
 
-    if not diff_reports:
+    if not all_reports:
         logger.info("No changes detected. Writing empty digest.")
         write_digest({}, digest_date=today)
         return
 
     # Step 3: Summarize via OpenAI
     logger.info("Step 3: Summarizing changes...")
-    summaries = summarize_all(diff_reports)
+    summaries = summarize_all(all_reports)
     logger.info("Generated summaries for %d sources", len(summaries))
 
     # Step 4: Write Markdown output
     logger.info("Step 4: Writing Markdown...")
-    digest_path = write_digest(summaries, digest_date=today)
+    digest_path = write_digest(summaries, digest_date=today, reports=all_reports)
     questions_path = write_questions(summaries, digest_date=today)
 
     logger.info("=== Done ===")

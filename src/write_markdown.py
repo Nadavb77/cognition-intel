@@ -4,6 +4,8 @@ import logging
 from datetime import date
 from pathlib import Path
 
+from .diff_engine import DiffReport
+
 logger = logging.getLogger(__name__)
 
 DIGESTS_DIR = Path("01 - Weekly Digests")
@@ -34,7 +36,7 @@ def concept_to_link(name: str) -> str:
 
 def format_source_section(source_name: str, summaries: list[dict]) -> str:
     """Format summaries for a single source into a Markdown section."""
-    lines = [f"## {source_name}", ""]
+    lines = [f"### {source_name}", ""]
 
     for i, s in enumerate(summaries, 1):
         what = s.get("what_changed", "Unknown change")
@@ -43,9 +45,13 @@ def format_source_section(source_name: str, summaries: list[dict]) -> str:
         sales = s.get("sales_implication", "")
         question = s.get("question_to_validate", "")
         concepts = s.get("related_concepts", [])
+        category = s.get("category", "")
 
-        lines.append(f"### {i}. {what}")
+        lines.append(f"#### {i}. {what}")
         lines.append("")
+        if category:
+            lines.append(f"**Category:** `{category}`")
+            lines.append("")
         if why:
             lines.append(f"**Why it matters:** {why}")
             lines.append("")
@@ -66,11 +72,45 @@ def format_source_section(source_name: str, summaries: list[dict]) -> str:
     return "\n".join(lines)
 
 
+def _group_sources_by_mode(
+    summaries_by_source: dict[str, list[dict]],
+    reports: list[DiffReport] | None = None,
+) -> dict[str, dict[str, list[dict]]]:
+    """Group sources into sections by mode (monitor / tavily / crawl).
+
+    Returns {"monitor": {...}, "tavily": {...}, "crawl": {...}}.
+    """
+    mode_map: dict[str, str] = {}
+    if reports:
+        for r in reports:
+            if r.mode == "monitor":
+                mode_map[r.source] = "monitor"
+
+    groups: dict[str, dict[str, list[dict]]] = {
+        "monitor": {},
+        "tavily": {},
+        "crawl": {},
+    }
+
+    for source_name, summaries in summaries_by_source.items():
+        mode = mode_map.get(source_name, "crawl")
+        groups[mode][source_name] = summaries
+
+    return groups
+
+
 def write_digest(
     summaries_by_source: dict[str, list[dict]],
     digest_date: str | None = None,
+    reports: list[DiffReport] | None = None,
 ) -> Path:
-    """Write the weekly digest note."""
+    """Write the weekly digest note.
+
+    If reports are provided, the digest separates changes by source mode:
+    - Firecrawl monitored changes
+    - Tavily-discovered external updates
+    - Manual/source-list crawl changes
+    """
     digest_date = digest_date or date.today().isoformat()
     DIGESTS_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -89,6 +129,8 @@ def write_digest(
     if not summaries_by_source:
         lines.append("No significant changes detected this week.")
     else:
+        groups = _group_sources_by_mode(summaries_by_source, reports)
+
         # Table of contents
         lines.append("## Sources with changes")
         lines.append("")
@@ -99,10 +141,40 @@ def write_digest(
         lines.append("---")
         lines.append("")
 
-        # Detailed sections
-        for source_name in sorted(summaries_by_source.keys()):
-            section = format_source_section(source_name, summaries_by_source[source_name])
-            lines.append(section)
+        # Firecrawl monitored changes
+        if groups["monitor"]:
+            lines.append("## Firecrawl Monitored Changes")
+            lines.append("")
+            lines.append("> These changes were detected by Firecrawl Monitoring, which compares ")
+            lines.append("> recurring crawl/scrape snapshots and provides diffs and judgments.")
+            lines.append("")
+            for source_name in sorted(groups["monitor"].keys()):
+                section = format_source_section(source_name, groups["monitor"][source_name])
+                lines.append(section)
+            lines.append("---")
+            lines.append("")
+
+        # Tavily-discovered updates
+        if groups["tavily"]:
+            lines.append("## Tavily-Discovered Updates")
+            lines.append("")
+            lines.append("> These changes were discovered via Tavily search/extract and diffed locally.")
+            lines.append("")
+            for source_name in sorted(groups["tavily"].keys()):
+                section = format_source_section(source_name, groups["tavily"][source_name])
+                lines.append(section)
+            lines.append("---")
+            lines.append("")
+
+        # Manual crawl changes
+        if groups["crawl"]:
+            lines.append("## Crawl-Based Changes")
+            lines.append("")
+            lines.append("> These changes were detected by crawling sources and comparing local snapshots.")
+            lines.append("")
+            for source_name in sorted(groups["crawl"].keys()):
+                section = format_source_section(source_name, groups["crawl"][source_name])
+                lines.append(section)
             lines.append("---")
             lines.append("")
 
