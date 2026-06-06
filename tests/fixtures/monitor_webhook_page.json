@@ -1,0 +1,42 @@
+{
+  "success": true,
+  "type": "monitor.page",
+  "id": "019df960-5f2a-75fb-a98b-bd2d32ca67d4",
+  "webhookId": "f1e2d3c4-0000-0000-0000-000000000000",
+  "data": [
+    {
+      "monitorId": "019df960-06e7-7383-9d89-82c0113dc31a",
+      "checkId": "019df960-5f2a-75fb-a98b-bd2d32ca67d4",
+      "url": "https://docs.devin.ai/getting-started",
+      "status": "changed",
+      "previousScrapeId": "019df94f-82c3-7e41-81f0-00c72b2d9c52",
+      "currentScrapeId": "019df960-73ee-7ac2-97a9-fb0e442c21f1",
+      "error": null,
+      "isMeaningful": true,
+      "judgment": {
+        "meaningful": true,
+        "confidence": "high",
+        "reason": "New MCP integration documentation added to getting started guide.",
+        "meaningfulChanges": [
+          {
+            "type": "added",
+            "after": "## MCP Integration\n\nDevin now supports Model Context Protocol...",
+            "reason": "New section documenting MCP integration capabilities."
+          },
+          {
+            "type": "modified",
+            "before": "Devin supports GitHub and GitLab integrations.",
+            "after": "Devin supports GitHub, GitLab, and MCP integrations.",
+            "reason": "Updated integration list to include MCP."
+          }
+        ]
+      },
+      "diff": {
+        "text": "--- previous\n+++ current\n@@ -10,3 +10,8 @@\n # Getting Started\n-Devin supports GitHub and GitLab integrations.\n+Devin supports GitHub, GitLab, and MCP integrations.\n+\n+## MCP Integration\n+\n+Devin now supports Model Context Protocol for connecting to external tools.\n"
+      }
+    }
+  ],
+  "metadata": {
+    "environment": "production"
+  }
+}

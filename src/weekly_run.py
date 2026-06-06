@@ -1,0 +1,103 @@
+"""Weekly pipeline orchestrator: crawl/monitor -> diff -> summarize -> write."""
+
+import argparse
+import logging
+import sys
+from datetime import date
+
+from .crawl import load_sources, run_crawl
+from .diff_engine import DiffReport, build_monitor_diff_report, run_diff
+from .firecrawl_monitoring import fetch_monitor_results
+from .summarize import summarize_all
+from .write_markdown import write_digest, write_questions
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
+logger = logging.getLogger(__name__)
+
+
+def main(skip_crawl: bool = False) -> None:
+    """Run the full weekly pipeline."""
+    today = date.today().isoformat()
+    logger.info("=== Weekly Intel Run: %s ===", today)
+
+    sources = load_sources()
+    crawl_sources = [s for s in sources if s.get("mode", "crawl") in ("crawl", "scrape")]
+    monitor_sources = [s for s in sources if s.get("mode") == "monitor"]
+
+    all_reports: list[DiffReport] = []
+
+    # Step 1a: Crawl non-monitor sources
+    if not skip_crawl and crawl_sources:
+        logger.info("Step 1a: Crawling %d sources...", len(crawl_sources))
+        snapshot_dirs = run_crawl(crawl_sources)
+        logger.info("Crawled %d sources", len(snapshot_dirs))
+    elif crawl_sources:
+        logger.info("Step 1a: Skipping crawl (--skip-crawl)")
+
+    # Step 1b: Fetch Firecrawl monitor results
+    if monitor_sources:
+        logger.info("Step 1b: Fetching monitor results for %d sources...", len(monitor_sources))
+        monitor_results = fetch_monitor_results(monitor_sources)
+        logger.info("Got monitor results for %d sources", len(monitor_results))
+
+        for source_name, check_result in monitor_results.items():
+            report = build_monitor_diff_report(source_name, check_result)
+            if report.changes or report.new_pages or report.removed_pages:
+                all_reports.append(report)
+                logger.info(
+                    "Monitor %s: %d changes, %d new, %d removed",
+                    source_name,
+                    len(report.changes),
+                    len(report.new_pages),
+                    len(report.removed_pages),
+                )
+    else:
+        logger.info("Step 1b: No monitor sources configured")
+
+    # Step 2: Diff local snapshots (for crawl-mode sources)
+    logger.info("Step 2: Running local diffs...")
+    local_reports = run_diff()
+    all_reports.extend(local_reports)
+    logger.info("Found %d sources with local changes", len(local_reports))
+
+    significant_count = sum(len(r.significant_changes) for r in all_reports)
+    logger.info("Total significant changes (score >= 3): %d", significant_count)
+
+    if not all_reports:
+        logger.info("No changes detected. Writing empty digest.")
+        write_digest({}, digest_date=today)
+        return
+
+    # Step 3: Summarize via OpenAI
+    logger.info("Step 3: Summarizing changes...")
+    summaries = summarize_all(all_reports)
+    logger.info("Generated summaries for %d sources", len(summaries))
+
+    # Step 4: Write Markdown output
+    logger.info("Step 4: Writing Markdown...")
+    digest_path = write_digest(summaries, digest_date=today, reports=all_reports)
+    questions_path = write_questions(summaries, digest_date=today)
+
+    logger.info("=== Done ===")
+    logger.info("Digest: %s", digest_path)
+    if questions_path:
+        logger.info("Questions: %s", questions_path)
+
+
+def cli() -> None:
+    """CLI entry point."""
+    parser = argparse.ArgumentParser(description="Run the weekly intel pipeline")
+    parser.add_argument(
+        "--skip-crawl",
+        action="store_true",
+        help="Skip the crawl step (use existing snapshots)",
+    )
+    args = parser.parse_args()
+    main(skip_crawl=args.skip_crawl)
+
+
+if __name__ == "__main__":
+    cli()
