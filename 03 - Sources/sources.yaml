@@ -1,5 +1,7 @@
 sources:
-  # --- Firecrawl Monitor mode (preferred for official docs/blogs) ---
+  # All sources use Firecrawl Monitoring mode.
+  # Schedule: Sunday 06:00 Israel time (Asia/Jerusalem).
+  # monitor_id values were populated by: python -m src.setup_monitors create
 
   - name: devin-docs
     url: https://docs.devin.ai
@@ -7,19 +9,19 @@ sources:
     crawl_method: firecrawl
     description: Official Devin documentation
     tags: [devin, cognition, docs]
+    monitor_id: 019e9ca2-846b-7045-94d8-2ace1eb9c2f5
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 8 * * 1"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
-        Notify when docs pages add, remove, or materially change
-        API behavior, features, or deployment instructions.
-        Ignore minor formatting or typo fixes.
+        Track changes to Devin documentation including new features,
+        API changes, deployment instructions, pricing, security,
+        and integration updates. Ignore minor wording or formatting fixes.
       crawl_limit: 100
       max_discovery_depth: 3
       notification: none
-    # monitor_id: <set after creating monitor via CLI or API>
 
   - name: cognition-blog
     url: https://cognition.ai/blog
@@ -27,14 +29,16 @@ sources:
     crawl_method: firecrawl
     description: Cognition company blog
     tags: [cognition, blog]
+    monitor_id: 019e9ca2-877a-731e-aff1-a9845649502c
     monitor:
       target_type: scrape
       schedule:
-        text: "every monday at 8am"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
-        Alert when a new blog post is published or existing
-        posts are significantly updated.
+        Alert when a new blog post is published or existing posts
+        are significantly updated. Track product announcements,
+        company news, and competitive positioning. Ignore minor edits.
       notification: none
 
   - name: devin-release-notes
@@ -43,29 +47,34 @@ sources:
     crawl_method: firecrawl
     description: Devin changelog and release notes
     tags: [devin, releases]
+    monitor_id: 019e9ca5-390e-734e-8026-6b029b957969
     monitor:
       target_type: scrape
       schedule:
-        text: "every monday at 8am"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
         Alert when new release notes or changelog entries appear.
+        Track new features, bug fixes, breaking changes, and
+        deprecations. Ignore formatting-only updates.
       notification: none
 
   - name: claude-code-docs
-    url: https://code.claude.com/docs
+    url: https://docs.anthropic.com/en/docs/claude-code
     mode: monitor
     crawl_method: firecrawl
     description: Claude Code official documentation
     tags: [claude-code, anthropic, docs]
+    monitor_id: 019e9ca5-4802-75bb-8cc7-c13dc17a56a2
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 8 * * 1"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
-        Notify when docs pages add, remove, or materially change
-        features, CLI commands, integrations, or pricing.
+        Track changes to Claude Code documentation including new features,
+        CLI commands, integrations, pricing, security, and deployment
+        options. Ignore minor wording or formatting fixes.
       crawl_limit: 100
       max_discovery_depth: 3
       notification: none
@@ -76,48 +85,94 @@ sources:
     crawl_method: firecrawl
     description: GitHub Copilot documentation
     tags: [github-copilot, microsoft, docs]
+    monitor_id: 019e9ca3-73fc-72ea-a096-1e6798edfccf
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 8 * * 1"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
-        Notify when Copilot docs add or change agent features,
-        coding agent capabilities, or enterprise deployment options.
+        Track changes to Copilot docs including agent features,
+        coding agent capabilities, enterprise deployment options,
+        pricing, and integration updates. Ignore minor wording fixes.
       crawl_limit: 100
       max_discovery_depth: 3
       notification: none
 
+  - name: github-copilot-coding-agent
+    url: https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent
+    mode: monitor
+    crawl_method: firecrawl
+    description: GitHub Copilot coding agent deep-dive
+    tags: [github-copilot, coding-agent, microsoft, docs]
+    monitor_id: 019e9cb4-fd94-7589-bdee-702df17dd592
+    monitor:
+      target_type: scrape
+      schedule:
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
+      goal: >-
+        Track changes to the Copilot coding agent page including
+        new capabilities, pricing, availability, deployment options,
+        and security model. Ignore minor wording or formatting fixes.
+      notification: none
+
   - name: cursor-docs
-    url: https://docs.cursor.com
+    url: https://cursor.com/docs
     mode: monitor
     crawl_method: firecrawl
     description: Cursor editor documentation
     tags: [cursor, anysphere, docs]
+    monitor_id: 019e9ca3-7b94-73ba-8276-05b09f2a3b10
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 8 * * 1"
-        timezone: UTC
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
       goal: >-
-        Notify when Cursor docs change features, pricing,
-        agent capabilities, or IDE integrations.
+        Track changes to Cursor docs including features, pricing,
+        agent capabilities, IDE integrations, and deployment options.
+        Ignore minor wording or formatting fixes.
       crawl_limit: 100
       max_discovery_depth: 3
       notification: none
 
-  # --- Tavily crawl mode (fallback for sources without Firecrawl monitoring) ---
-
   - name: factory-docs
     url: https://docs.factory.ai
-    mode: crawl
-    crawl_method: tavily
+    mode: monitor
+    crawl_method: firecrawl
     description: Factory AI documentation
     tags: [factory, docs]
+    monitor_id: 019e9ca6-8af3-7428-9a39-fc7a0de95367
+    monitor:
+      target_type: crawl
+      schedule:
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
+      goal: >-
+        Track changes to Factory AI documentation including product
+        features, pricing, deployment, security, and competitive
+        positioning. Ignore minor wording or formatting fixes.
+      crawl_limit: 50
+      max_discovery_depth: 2
+      notification: none
 
   - name: coderabbit-docs
     url: https://docs.coderabbit.ai
-    mode: crawl
-    crawl_method: tavily
+    mode: monitor
+    crawl_method: firecrawl
     description: CodeRabbit documentation
     tags: [coderabbit, docs]
+    monitor_id: 019e9ca6-9a34-7437-afb7-0862f9ae7964
+    monitor:
+      target_type: crawl
+      schedule:
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
+      goal: >-
+        Track changes to CodeRabbit documentation including product
+        features, pricing, integrations, security, and competitive
+        positioning. Ignore minor wording or formatting fixes.
+      crawl_limit: 50
+      max_discovery_depth: 2
+      notification: none

@@ -95,35 +95,58 @@ python -m pytest tests/ -v
 
 ### Creating monitors
 
-Monitors are defined in `03 - Sources/sources.yaml` with `mode: monitor`:
+Monitors are defined in `03 - Sources/sources.yaml` with `mode: monitor`. Use the setup script to create them all at once:
+
+```bash
+# Dry run — see what would be created without making API calls
+python -m src.setup_monitors create --dry-run
+
+# Create monitors and save monitor_id values to sources.yaml
+python -m src.setup_monitors create
+```
+
+The script:
+1. Reads all `mode: monitor` sources from `sources.yaml`
+2. Skips any source that already has a `monitor_id`
+3. Calls the Firecrawl API to create each monitor
+4. Saves the returned `monitor_id` back into `sources.yaml`
+5. Handles rate limiting with exponential backoff
+
+### Verifying monitors are active
+
+```bash
+# List all monitors in your Firecrawl account
+python -m src.setup_monitors list
+
+# Verify sources.yaml monitor_ids match Firecrawl account
+python -m src.setup_monitors verify
+```
+
+### Updating monitor_id values
+
+If you need to recreate a monitor (e.g. after deleting it in the Firecrawl dashboard):
+1. Remove the `monitor_id` line from the source in `sources.yaml`
+2. Run `python -m src.setup_monitors create` — it will only create monitors for sources without IDs
+
+### Monitor source config
 
 ```yaml
 - name: devin-docs
   url: https://docs.devin.ai
   mode: monitor
+  monitor_id: 019e9ca2-...     # Set automatically by setup script
   monitor:
-    target_type: crawl        # crawl (discovery) or scrape (explicit URLs)
+    target_type: crawl          # crawl (discovery) or scrape (explicit URLs)
     schedule:
-      cron: "0 8 * * 1"      # Every Monday 8am, or use text: "every monday at 8am"
-      timezone: UTC
+      cron: "0 6 * * 0"        # Sunday 06:00 Israel time (Asia/Jerusalem)
+      timezone: Asia/Jerusalem
     goal: >-
-      Notify when docs pages add, remove, or materially change
-      API behavior, features, or deployment instructions.
+      Track changes including new features, API changes,
+      pricing, security, and deployment updates.
+      Ignore minor wording or formatting fixes.
     crawl_limit: 100
     max_discovery_depth: 3
-    notification: none        # none, webhook, or email
-```
-
-To create a monitor via the API:
-
-```python
-from src.firecrawl_monitoring import create_monitor
-from src.crawl import load_sources
-
-sources = load_sources()
-monitor_source = next(s for s in sources if s["name"] == "devin-docs")
-result = create_monitor(monitor_source)
-# Save the returned monitor ID back to sources.yaml as monitor_id
+    notification: none          # none, webhook, or email
 ```
 
 ### Webhooks vs weekly polling

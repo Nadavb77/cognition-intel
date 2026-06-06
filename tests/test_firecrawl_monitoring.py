@@ -1,7 +1,11 @@
-"""Tests for Firecrawl monitoring parsing and scoring."""
+"""Tests for Firecrawl monitoring parsing, scoring, and setup."""
 
 import json
+import tempfile
 from pathlib import Path
+from unittest.mock import patch, MagicMock
+
+import yaml
 
 from src.diff_engine import (
     build_monitor_diff_report,
@@ -15,6 +19,7 @@ from src.firecrawl_monitoring import (
     parse_page_result,
     parse_webhook_payload,
 )
+from src.setup_monitors import setup_monitors, _save_sources
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -302,3 +307,80 @@ class TestBuildMonitorDiffReport:
         assert len(report.changes) == 1
         # Without judgment, score is based on diff size
         assert report.changes[0].score >= 1
+
+
+# ---------------------------------------------------------------------------
+# Setup monitors
+# ---------------------------------------------------------------------------
+
+
+class TestSetupMonitors:
+    def _make_sources_file(self, sources: list[dict], tmp_path: Path) -> Path:
+        p = tmp_path / "sources.yaml"
+        p.write_text(yaml.dump({"sources": sources}))
+        return p
+
+    def test_dry_run_does_not_call_api(self, tmp_path):
+        sources = [
+            {"name": "test-src", "url": "https://example.com", "mode": "monitor",
+             "monitor": {"target_type": "crawl", "schedule": {"cron": "0 3 * * 0", "timezone": "UTC"},
+                         "goal": "Test", "notification": "none"}}
+        ]
+        src_file = self._make_sources_file(sources, tmp_path)
+
+        with patch("src.setup_monitors.load_sources", return_value=sources), \
+             patch("src.setup_monitors.create_monitor") as mock_create:
+            result = setup_monitors(dry_run=True)
+            mock_create.assert_not_called()
+            assert result == {}
+
+    def test_skips_sources_with_existing_monitor_id(self, tmp_path):
+        sources = [
+            {"name": "already-set", "url": "https://example.com", "mode": "monitor",
+             "monitor_id": "existing-id-123",
+             "monitor": {"target_type": "crawl", "schedule": {"cron": "0 3 * * 0", "timezone": "UTC"},
+                         "goal": "Test", "notification": "none"}}
+        ]
+
+        with patch("src.setup_monitors.load_sources", return_value=sources), \
+             patch("src.setup_monitors.create_monitor") as mock_create:
+            result = setup_monitors(dry_run=False)
+            mock_create.assert_not_called()
+            assert result == {}
+
+    def test_creates_monitor_and_saves_id(self, tmp_path):
+        sources = [
+            {"name": "new-src", "url": "https://example.com", "mode": "monitor",
+             "monitor": {"target_type": "crawl", "schedule": {"cron": "0 3 * * 0", "timezone": "UTC"},
+                         "goal": "Test", "notification": "none"}}
+        ]
+
+        with patch("src.setup_monitors.load_sources", return_value=sources), \
+             patch("src.setup_monitors.create_monitor", return_value={"id": "mon-abc-123"}), \
+             patch("src.setup_monitors._save_sources"):
+            result = setup_monitors(dry_run=False)
+            assert result == {"new-src": "mon-abc-123"}
+            assert sources[0]["monitor_id"] == "mon-abc-123"
+
+    def test_skips_non_monitor_sources(self, tmp_path):
+        sources = [
+            {"name": "crawl-src", "url": "https://example.com", "mode": "crawl"},
+            {"name": "monitor-src", "url": "https://example.com", "mode": "monitor",
+             "monitor": {"target_type": "crawl", "schedule": {"cron": "0 3 * * 0", "timezone": "UTC"},
+                         "goal": "Test", "notification": "none"}}
+        ]
+
+        with patch("src.setup_monitors.load_sources", return_value=sources), \
+             patch("src.setup_monitors.create_monitor", return_value={"id": "mon-xyz"}), \
+             patch("src.setup_monitors._save_sources"):
+            result = setup_monitors(dry_run=False)
+            assert "crawl-src" not in result
+            assert result == {"monitor-src": "mon-xyz"}
+
+    def test_save_sources_writes_yaml(self, tmp_path):
+        sources = [{"name": "test", "url": "https://example.com", "mode": "monitor"}]
+        out_path = tmp_path / "sources.yaml"
+        _save_sources(sources, out_path)
+
+        loaded = yaml.safe_load(out_path.read_text())
+        assert loaded["sources"][0]["name"] == "test"
