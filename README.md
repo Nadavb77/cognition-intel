@@ -138,7 +138,7 @@ If you need to recreate a monitor (e.g. after deleting it in the Firecrawl dashb
   monitor:
     target_type: crawl          # crawl (discovery) or scrape (explicit URLs)
     schedule:
-      cron: "0 3 * * 0"        # Sunday 06:00 Israel time (Asia/Jerusalem)
+      cron: "0 6 * * 0"        # Sunday 06:00 Israel time (Asia/Jerusalem)
       timezone: Asia/Jerusalem
     goal: >-
       Track changes including new features, API changes,

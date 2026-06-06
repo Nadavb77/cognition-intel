@@ -13,7 +13,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to Devin documentation including new features,
@@ -33,7 +33,7 @@ sources:
     monitor:
       target_type: scrape
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Alert when a new blog post is published or existing posts
@@ -51,7 +51,7 @@ sources:
     monitor:
       target_type: scrape
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Alert when new release notes or changelog entries appear.
@@ -69,7 +69,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to Claude Code documentation including new features,
@@ -89,7 +89,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to Copilot docs including agent features,
@@ -109,7 +109,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to Cursor docs including features, pricing,
@@ -129,7 +129,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to Factory AI documentation including product
@@ -149,7 +149,7 @@ sources:
     monitor:
       target_type: crawl
       schedule:
-        cron: "0 3 * * 0"
+        cron: "0 6 * * 0"
         timezone: Asia/Jerusalem
       goal: >-
         Track changes to CodeRabbit documentation including product
