@@ -99,8 +99,26 @@ sources:
       max_discovery_depth: 3
       notification: none
 
+  - name: github-copilot-coding-agent
+    url: https://docs.github.com/copilot/concepts/agents/coding-agent/about-coding-agent
+    mode: monitor
+    crawl_method: firecrawl
+    description: GitHub Copilot coding agent deep-dive
+    tags: [github-copilot, coding-agent, microsoft, docs]
+    monitor_id: 019e9cb4-fd94-7589-bdee-702df17dd592
+    monitor:
+      target_type: scrape
+      schedule:
+        cron: "0 6 * * 0"
+        timezone: Asia/Jerusalem
+      goal: >-
+        Track changes to the Copilot coding agent page including
+        new capabilities, pricing, availability, deployment options,
+        and security model. Ignore minor wording or formatting fixes.
+      notification: none
+
   - name: cursor-docs
-    url: https://docs.cursor.com
+    url: https://cursor.com/docs
     mode: monitor
     crawl_method: firecrawl
     description: Cursor editor documentation
