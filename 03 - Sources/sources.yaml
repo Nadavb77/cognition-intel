@@ -1,0 +1,48 @@
+sources:
+  - name: devin-docs
+    url: https://docs.devin.ai
+    crawl_method: firecrawl
+    description: Official Devin documentation
+    tags: [devin, cognition, docs]
+
+  - name: cognition-blog
+    url: https://cognition.ai/blog
+    crawl_method: firecrawl
+    description: Cognition company blog
+    tags: [cognition, blog]
+
+  - name: devin-release-notes
+    url: https://docs.devin.ai/changelog
+    crawl_method: firecrawl
+    description: Devin changelog and release notes
+    tags: [devin, releases]
+
+  - name: claude-code-docs
+    url: https://code.claude.com/docs
+    crawl_method: firecrawl
+    description: Claude Code official documentation
+    tags: [claude-code, anthropic, docs]
+
+  - name: github-copilot-docs
+    url: https://docs.github.com/en/copilot
+    crawl_method: firecrawl
+    description: GitHub Copilot documentation
+    tags: [github-copilot, microsoft, docs]
+
+  - name: cursor-docs
+    url: https://docs.cursor.com
+    crawl_method: firecrawl
+    description: Cursor editor documentation
+    tags: [cursor, anysphere, docs]
+
+  - name: factory-docs
+    url: https://docs.factory.ai
+    crawl_method: tavily
+    description: Factory AI documentation
+    tags: [factory, docs]
+
+  - name: coderabbit-docs
+    url: https://docs.coderabbit.ai
+    crawl_method: tavily
+    description: CodeRabbit documentation
+    tags: [coderabbit, docs]
