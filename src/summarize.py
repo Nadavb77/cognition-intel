@@ -141,10 +141,15 @@ def call_openai(prompt: str) -> list[dict]:
 
 
 def summarize_report(report: DiffReport) -> list[dict]:
-    """Summarize a diff report's significant changes via OpenAI."""
+    """Summarize a diff report's significant changes via OpenAI.
+
+    Only calls OpenAI when there are significant changes (score >= 3).
+    Reports with only new/removed pages but no significant changes are
+    skipped — new pages on baseline runs should not trigger OpenAI.
+    """
     significant = report.significant_changes
-    if not significant and not report.new_pages and not report.removed_pages:
-        logger.info("No significant changes for %s", report.source)
+    if not significant:
+        logger.info("No significant changes for %s, skipping OpenAI", report.source)
         return []
 
     # Use monitor-optimized prompt for Firecrawl monitor reports
@@ -164,11 +169,12 @@ def summarize_all(
 
     Returns (summaries_by_source, failed_sources) where failed_sources
     lists source names where OpenAI summarization failed.
+    Only reports with significant changes (score >= 3) are sent to OpenAI.
     """
     results = {}
     failed: list[str] = []
     for report in reports:
-        if not report.significant_changes and not report.new_pages and not report.removed_pages:
+        if not report.significant_changes:
             continue
         summaries = summarize_report(report)
         if summaries:
