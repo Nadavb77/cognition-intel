@@ -99,6 +99,32 @@ def _group_sources_by_mode(
     return groups
 
 
+def _write_minor_changes_section(
+    lines: list[str],
+    reports: list[DiffReport],
+) -> None:
+    """Append a section listing minor changes that were ignored."""
+    lines.append("## Minor Changes Ignored")
+    lines.append("")
+    for report in reports:
+        lines.append(f"### {report.source}")
+        lines.append("")
+        if report.changes:
+            for change in report.changes:
+                lines.append(
+                    f"- **{change.url or change.page_file}** "
+                    f"(score {change.score}, {change.category}): "
+                    f"{change.change_summary}"
+                )
+        if report.new_pages:
+            for page in report.new_pages:
+                lines.append(f"- **New page**: {page}")
+        if report.removed_pages:
+            for page in report.removed_pages:
+                lines.append(f"- **Removed page**: {page}")
+        lines.append("")
+
+
 def _write_source_status_section(
     lines: list[str],
     source_statuses: dict[str, str],
@@ -167,8 +193,10 @@ def write_digest(
         "",
     ]
 
+    has_minor_changes = not summaries_by_source and reports
+
     if not summaries_by_source:
-        # Rich "no changes" digest
+        # Rich "no changes" / "minor changes only" digest
         lines.append("## Executive Summary")
         lines.append("")
         if is_baseline:
@@ -177,6 +205,11 @@ def write_digest(
                 "No previous snapshots to compare against. Future runs will "
                 "detect changes relative to this baseline."
             )
+        elif has_minor_changes:
+            lines.append(
+                "Minor changes were detected but none scored high enough "
+                "(score \u2265 3) to warrant summarization. Details below."
+            )
         else:
             lines.append("No significant changes detected this week.")
         lines.append("")
@@ -184,6 +217,9 @@ def write_digest(
         if source_statuses:
             _write_source_status_section(lines, source_statuses)
             _write_system_status_section(lines, source_statuses)
+
+        if has_minor_changes:
+            _write_minor_changes_section(lines, reports)
 
         lines.append("## Sales / Learning Impact")
         lines.append("")
@@ -196,6 +232,11 @@ def write_digest(
             lines.append(
                 "Wait for the next scheduled run. Monitors will compare against "
                 "this week's baseline and report any meaningful changes."
+            )
+        elif has_minor_changes:
+            lines.append(
+                "Review the minor changes above if any look relevant. "
+                "No action required otherwise."
             )
         else:
             lines.append(

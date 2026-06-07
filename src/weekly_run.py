@@ -78,6 +78,8 @@ def main(skip_crawl: bool = False) -> None:
                     len(report.new_pages),
                     len(report.removed_pages),
                 )
+            else:
+                source_statuses[source_name] = "checked, no significant changes"
     else:
         logger.info("Step 1b: No monitor sources configured")
 
@@ -106,8 +108,9 @@ def main(skip_crawl: bool = False) -> None:
             mode = s.get("mode", "crawl")
             status = source_statuses.get(name, "")
             if mode == "monitor":
-                # A monitor that returned results has prior history
-                if status == "checked":
+                # Any "checked" status means the API returned a completed
+                # check, so this monitor has prior history.
+                if status.startswith("checked"):
                     return False
             else:
                 snap_dir = SNAPSHOTS_DIR / name
@@ -116,6 +119,23 @@ def main(skip_crawl: bool = False) -> None:
         return True
 
     is_baseline = _is_first_run()
+
+    # Update statuses: sources with reports but no significant changes
+    sources_with_reports = {r.source for r in all_reports}
+    for name in sources_with_reports:
+        has_significant = any(
+            r.source == name and r.significant_changes
+            for r in all_reports
+        )
+        if has_significant:
+            source_statuses[name] = "significant changes detected"
+        else:
+            source_statuses[name] = "checked, minor changes ignored"
+
+    # Mark remaining checked sources that had no reports at all
+    for name, status in source_statuses.items():
+        if status == "checked":
+            source_statuses[name] = "checked, no significant changes"
 
     if not all_reports:
         logger.info("No changes detected. Writing digest with source status.")
@@ -127,14 +147,21 @@ def main(skip_crawl: bool = False) -> None:
         )
         return
 
-    # Step 3: Summarize via OpenAI
+    if significant_count == 0:
+        logger.info("Only minor changes detected (all below score 3). Skipping OpenAI.")
+        write_digest(
+            {},
+            digest_date=today,
+            reports=all_reports,
+            source_statuses=source_statuses,
+            is_baseline=is_baseline,
+        )
+        return
+
+    # Step 3: Summarize via OpenAI (only significant changes)
     logger.info("Step 3: Summarizing changes...")
     summaries = summarize_all(all_reports)
     logger.info("Generated summaries for %d sources", len(summaries))
-
-    # Mark sources with significant changes
-    for source_name in summaries:
-        source_statuses[source_name] = "significant changes detected"
 
     # Step 4: Write Markdown output
     logger.info("Step 4: Writing Markdown...")
