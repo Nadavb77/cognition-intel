@@ -3,6 +3,7 @@
 import json
 import logging
 import os
+import time
 
 import httpx
 
@@ -87,21 +88,37 @@ def call_openai(prompt: str) -> list[dict]:
     base_url = os.environ.get("OPENAI_API_URL", "https://api.openai.com/v1")
     model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
-    resp = httpx.post(
-        f"{base_url}/chat/completions",
-        headers={"Authorization": f"Bearer {api_key}"},
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": 0.3,
-            "response_format": {"type": "json_object"},
-        },
-        timeout=120,
-    )
-    resp.raise_for_status()
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            resp = httpx.post(
+                f"{base_url}/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}"},
+                json={
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": 0.3,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=120,
+            )
+            resp.raise_for_status()
+            break
+        except httpx.HTTPStatusError as exc:
+            if exc.response.status_code == 429 and attempt < max_retries - 1:
+                wait = 2 ** (attempt + 1)
+                logger.warning("OpenAI rate limited (429), retrying in %ds...", wait)
+                time.sleep(wait)
+                continue
+            logger.error("OpenAI API error: %s", exc)
+            return []
+        except httpx.HTTPError as exc:
+            logger.error("OpenAI request failed: %s", exc)
+            return []
+
     data = resp.json()
 
     content = data["choices"][0]["message"]["content"]
@@ -140,11 +157,27 @@ def summarize_report(report: DiffReport) -> list[dict]:
     return call_openai(prompt)
 
 
-def summarize_all(reports: list[DiffReport]) -> dict[str, list[dict]]:
-    """Summarize all diff reports. Returns {source_name: [summaries]}."""
+def summarize_all(
+    reports: list[DiffReport],
+) -> tuple[dict[str, list[dict]], list[str]]:
+    """Summarize all diff reports.
+
+    Returns (summaries_by_source, failed_sources) where failed_sources
+    lists source names where OpenAI summarization failed.
+    """
     results = {}
+    failed: list[str] = []
     for report in reports:
+        if not report.significant_changes and not report.new_pages and not report.removed_pages:
+            continue
         summaries = summarize_report(report)
         if summaries:
             results[report.source] = summaries
-    return results
+        else:
+            logger.warning(
+                "Summarization returned no results for %s — "
+                "changes were detected but not summarized",
+                report.source,
+            )
+            failed.append(report.source)
+    return results, failed

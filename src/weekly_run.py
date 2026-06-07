@@ -160,8 +160,16 @@ def main(skip_crawl: bool = False) -> None:
 
     # Step 3: Summarize via OpenAI (only significant changes)
     logger.info("Step 3: Summarizing changes...")
-    summaries = summarize_all(all_reports)
+    summaries, failed_sources = summarize_all(all_reports)
     logger.info("Generated summaries for %d sources", len(summaries))
+    if failed_sources:
+        logger.warning(
+            "Summarization failed for %d source(s): %s",
+            len(failed_sources),
+            ", ".join(failed_sources),
+        )
+        for name in failed_sources:
+            source_statuses[name] = "summarization failed — changes detected but not summarized"
 
     # Step 4: Write Markdown output
     logger.info("Step 4: Writing Markdown...")
