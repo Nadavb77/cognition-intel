@@ -157,11 +157,27 @@ def summarize_report(report: DiffReport) -> list[dict]:
     return call_openai(prompt)
 
 
-def summarize_all(reports: list[DiffReport]) -> dict[str, list[dict]]:
-    """Summarize all diff reports. Returns {source_name: [summaries]}."""
+def summarize_all(
+    reports: list[DiffReport],
+) -> tuple[dict[str, list[dict]], list[str]]:
+    """Summarize all diff reports.
+
+    Returns (summaries_by_source, failed_sources) where failed_sources
+    lists source names where OpenAI summarization failed.
+    """
     results = {}
+    failed: list[str] = []
     for report in reports:
+        if not report.significant_changes and not report.new_pages and not report.removed_pages:
+            continue
         summaries = summarize_report(report)
         if summaries:
             results[report.source] = summaries
-    return results
+        else:
+            logger.warning(
+                "Summarization returned no results for %s — "
+                "changes were detected but not summarized",
+                report.source,
+            )
+            failed.append(report.source)
+    return results, failed
