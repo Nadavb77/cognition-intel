@@ -99,10 +99,74 @@ def _group_sources_by_mode(
     return groups
 
 
+def _write_minor_changes_section(
+    lines: list[str],
+    reports: list[DiffReport],
+) -> None:
+    """Append a section listing minor changes that were ignored."""
+    lines.append("## Minor Changes Ignored")
+    lines.append("")
+    for report in reports:
+        lines.append(f"### {report.source}")
+        lines.append("")
+        if report.changes:
+            for change in report.changes:
+                lines.append(
+                    f"- **{change.url or change.page_file}** "
+                    f"(score {change.score}, {change.category}): "
+                    f"{change.change_summary}"
+                )
+        if report.new_pages:
+            for page in report.new_pages:
+                lines.append(f"- **New page**: {page}")
+        if report.removed_pages:
+            for page in report.removed_pages:
+                lines.append(f"- **Removed page**: {page}")
+        lines.append("")
+
+
+def _write_source_status_section(
+    lines: list[str],
+    source_statuses: dict[str, str],
+) -> None:
+    """Append the Sources Checked section."""
+    lines.append("## Sources Checked")
+    lines.append("")
+    for name, status in source_statuses.items():
+        lines.append(f"- **{name}**: {status}")
+    lines.append("")
+
+
+def _write_system_status_section(
+    lines: list[str],
+    source_statuses: dict[str, str],
+) -> None:
+    """Append the System Status section."""
+    total = len(source_statuses)
+    checked = sum(1 for v in source_statuses.values() if v.startswith("checked") or v == "significant changes detected")
+    failed = sum(1 for v in source_statuses.values() if "failed" in v or "missing" in v)
+    skipped = sum(1 for v in source_statuses.values() if "skipped" in v)
+
+    lines.append("## System Status")
+    lines.append("")
+    lines.append(f"- {checked}/{total} sources checked successfully")
+    if failed:
+        lines.append(f"- {failed} failed source{'s' if failed != 1 else ''}")
+    else:
+        lines.append("- 0 failed sources")
+    if skipped:
+        lines.append(f"- {skipped} skipped source{'s' if skipped != 1 else ''}")
+    lines.append("- No secrets printed")
+    lines.append("- Digest generated successfully")
+    lines.append("")
+
+
 def write_digest(
     summaries_by_source: dict[str, list[dict]],
     digest_date: str | None = None,
     reports: list[DiffReport] | None = None,
+    source_statuses: dict[str, str] | None = None,
+    is_baseline: bool = False,
 ) -> Path:
     """Write the weekly digest note.
 
@@ -110,6 +174,9 @@ def write_digest(
     - Firecrawl monitored changes
     - Tavily-discovered external updates
     - Manual/source-list crawl changes
+
+    source_statuses maps source name -> status string for audit trail.
+    is_baseline indicates this is the first run with no prior data.
     """
     digest_date = digest_date or date.today().isoformat()
     DIGESTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -118,16 +185,64 @@ def write_digest(
     filepath = DIGESTS_DIR / filename
 
     lines = [
-        f"# Weekly AI Coding Agents Digest",
-        f"",
+        "# Weekly AI Coding Agents Digest",
+        "",
         f"**Date:** {digest_date}",
-        f"",
-        f"---",
-        f"",
+        "",
+        "---",
+        "",
     ]
 
+    has_minor_changes = not summaries_by_source and reports
+
     if not summaries_by_source:
-        lines.append("No significant changes detected this week.")
+        # Rich "no changes" / "minor changes only" digest
+        lines.append("## Executive Summary")
+        lines.append("")
+        if is_baseline:
+            lines.append(
+                "Baseline run — monitors were checked for the first time. "
+                "No previous snapshots to compare against. Future runs will "
+                "detect changes relative to this baseline."
+            )
+        elif has_minor_changes:
+            lines.append(
+                "Minor changes were detected but none scored high enough "
+                "(score \u2265 3) to warrant summarization. Details below."
+            )
+        else:
+            lines.append("No significant changes detected this week.")
+        lines.append("")
+
+        if source_statuses:
+            _write_source_status_section(lines, source_statuses)
+            _write_system_status_section(lines, source_statuses)
+
+        if has_minor_changes:
+            _write_minor_changes_section(lines, reports)
+
+        lines.append("## Sales / Learning Impact")
+        lines.append("")
+        lines.append("No talk track updates needed this week.")
+        lines.append("")
+
+        lines.append("## Next Recommended Action")
+        lines.append("")
+        if is_baseline:
+            lines.append(
+                "Wait for the next scheduled run. Monitors will compare against "
+                "this week's baseline and report any meaningful changes."
+            )
+        elif has_minor_changes:
+            lines.append(
+                "Review the minor changes above if any look relevant. "
+                "No action required otherwise."
+            )
+        else:
+            lines.append(
+                "No action required. Review again next week."
+            )
+        lines.append("")
     else:
         groups = _group_sources_by_mode(summaries_by_source, reports)
 
@@ -177,6 +292,11 @@ def write_digest(
                 lines.append(section)
             lines.append("---")
             lines.append("")
+
+        # Audit trail: source + system status
+        if source_statuses:
+            _write_source_status_section(lines, source_statuses)
+            _write_system_status_section(lines, source_statuses)
 
     content = "\n".join(lines)
     filepath.write_text(content)

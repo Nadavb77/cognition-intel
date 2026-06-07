@@ -4,12 +4,15 @@ import argparse
 import logging
 import sys
 from datetime import date
+from pathlib import Path
 
 from .crawl import load_sources, run_crawl
 from .diff_engine import DiffReport, build_monitor_diff_report, run_diff
 from .firecrawl_monitoring import fetch_monitor_results
 from .summarize import summarize_all
 from .write_markdown import write_digest, write_questions
+
+SNAPSHOTS_DIR = Path("90 - Raw Snapshots")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -29,19 +32,40 @@ def main(skip_crawl: bool = False) -> None:
 
     all_reports: list[DiffReport] = []
 
+    # Track per-source status for the digest
+    source_statuses: dict[str, str] = {}
+    for s in sources:
+        source_statuses[s["name"]] = "pending"
+
     # Step 1a: Crawl non-monitor sources
     if not skip_crawl and crawl_sources:
         logger.info("Step 1a: Crawling %d sources...", len(crawl_sources))
         snapshot_dirs = run_crawl(crawl_sources)
         logger.info("Crawled %d sources", len(snapshot_dirs))
+        for s in crawl_sources:
+            if s["name"] in snapshot_dirs:
+                source_statuses[s["name"]] = "checked"
+            else:
+                source_statuses[s["name"]] = "crawl failed or returned no pages"
     elif crawl_sources:
         logger.info("Step 1a: Skipping crawl (--skip-crawl)")
+        for s in crawl_sources:
+            source_statuses[s["name"]] = "skipped (--skip-crawl)"
 
     # Step 1b: Fetch Firecrawl monitor results
     if monitor_sources:
         logger.info("Step 1b: Fetching monitor results for %d sources...", len(monitor_sources))
         monitor_results = fetch_monitor_results(monitor_sources)
         logger.info("Got monitor results for %d sources", len(monitor_results))
+
+        for s in monitor_sources:
+            name = s["name"]
+            if name in monitor_results:
+                source_statuses[name] = "checked"
+            elif not s.get("monitor_id"):
+                source_statuses[name] = "missing monitor_id"
+            else:
+                source_statuses[name] = "no completed checks yet"
 
         for source_name, check_result in monitor_results.items():
             report = build_monitor_diff_report(source_name, check_result)
@@ -54,6 +78,8 @@ def main(skip_crawl: bool = False) -> None:
                     len(report.new_pages),
                     len(report.removed_pages),
                 )
+            else:
+                source_statuses[source_name] = "checked, no significant changes"
     else:
         logger.info("Step 1b: No monitor sources configured")
 
@@ -66,19 +92,86 @@ def main(skip_crawl: bool = False) -> None:
     significant_count = sum(len(r.significant_changes) for r in all_reports)
     logger.info("Total significant changes (score >= 3): %d", significant_count)
 
+    # Baseline = first-ever successful run (nothing to compare against).
+    # For crawl sources: baseline when <2 snapshot dirs exist.
+    # For monitor sources: baseline when the API returned no completed
+    # checks (status "no completed checks yet").  Once a monitor has at
+    # least one completed check, it is no longer baseline even if nothing
+    # changed.
+    def _is_first_run() -> bool:
+        if all_reports:
+            return False
+        if any("failed" in v or "missing" in v for v in source_statuses.values()):
+            return False
+        for s in sources:
+            name = s["name"]
+            mode = s.get("mode", "crawl")
+            status = source_statuses.get(name, "")
+            if mode == "monitor":
+                # Any "checked" status means the API returned a completed
+                # check, so this monitor has prior history.
+                if status.startswith("checked"):
+                    return False
+            else:
+                snap_dir = SNAPSHOTS_DIR / name
+                if snap_dir.exists() and len(list(snap_dir.iterdir())) >= 2:
+                    return False
+        return True
+
+    is_baseline = _is_first_run()
+
+    # Update statuses: sources with reports but no significant changes
+    sources_with_reports = {r.source for r in all_reports}
+    for name in sources_with_reports:
+        has_significant = any(
+            r.source == name and r.significant_changes
+            for r in all_reports
+        )
+        if has_significant:
+            source_statuses[name] = "significant changes detected"
+        else:
+            source_statuses[name] = "checked, minor changes ignored"
+
+    # Mark remaining checked sources that had no reports at all
+    for name, status in source_statuses.items():
+        if status == "checked":
+            source_statuses[name] = "checked, no significant changes"
+
     if not all_reports:
-        logger.info("No changes detected. Writing empty digest.")
-        write_digest({}, digest_date=today)
+        logger.info("No changes detected. Writing digest with source status.")
+        write_digest(
+            {},
+            digest_date=today,
+            source_statuses=source_statuses,
+            is_baseline=is_baseline,
+        )
         return
 
-    # Step 3: Summarize via OpenAI
+    if significant_count == 0:
+        logger.info("Only minor changes detected (all below score 3). Skipping OpenAI.")
+        write_digest(
+            {},
+            digest_date=today,
+            reports=all_reports,
+            source_statuses=source_statuses,
+            is_baseline=is_baseline,
+        )
+        return
+
+    # Step 3: Summarize via OpenAI (only significant changes)
     logger.info("Step 3: Summarizing changes...")
     summaries = summarize_all(all_reports)
     logger.info("Generated summaries for %d sources", len(summaries))
 
     # Step 4: Write Markdown output
     logger.info("Step 4: Writing Markdown...")
-    digest_path = write_digest(summaries, digest_date=today, reports=all_reports)
+    digest_path = write_digest(
+        summaries,
+        digest_date=today,
+        reports=all_reports,
+        source_statuses=source_statuses,
+        is_baseline=is_baseline,
+    )
     questions_path = write_questions(summaries, digest_date=today)
 
     logger.info("=== Done ===")
