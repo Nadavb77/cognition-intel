@@ -3,6 +3,7 @@
 import json
 import logging
 import os
+import time
 
 import httpx
 
@@ -87,21 +88,37 @@ def call_openai(prompt: str) -> list[dict]:
     base_url = os.environ.get("OPENAI_API_URL", "https://api.openai.com/v1")
     model = os.environ.get("OPENAI_MODEL", "gpt-4o-mini")
 
-    resp = httpx.post(
-        f"{base_url}/chat/completions",
-        headers={"Authorization": f"Bearer {api_key}"},
-        json={
-            "model": model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": prompt},
-            ],
-            "temperature": 0.3,
-            "response_format": {"type": "json_object"},
-        },
-        timeout=120,
-    )
-    resp.raise_for_status()
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            resp = httpx.post(
+                f"{base_url}/chat/completions",
+                headers={"Authorization": f"Bearer {api_key}"},
+                json={
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": 0.3,
+                    "response_format": {"type": "json_object"},
+                },
+                timeout=120,
+            )
+            resp.raise_for_status()
+            break
+        except httpx.HTTPStatusError as exc:
+            if exc.response.status_code == 429 and attempt < max_retries - 1:
+                wait = 2 ** (attempt + 1)
+                logger.warning("OpenAI rate limited (429), retrying in %ds...", wait)
+                time.sleep(wait)
+                continue
+            logger.error("OpenAI API error: %s", exc)
+            return []
+        except httpx.HTTPError as exc:
+            logger.error("OpenAI request failed: %s", exc)
+            return []
+
     data = resp.json()
 
     content = data["choices"][0]["message"]["content"]
