@@ -29,19 +29,35 @@ def main(skip_crawl: bool = False) -> None:
 
     all_reports: list[DiffReport] = []
 
+    # Track per-source status for the digest
+    source_statuses: dict[str, str] = {}
+    for s in sources:
+        source_statuses[s["name"]] = "pending"
+
     # Step 1a: Crawl non-monitor sources
     if not skip_crawl and crawl_sources:
         logger.info("Step 1a: Crawling %d sources...", len(crawl_sources))
         snapshot_dirs = run_crawl(crawl_sources)
         logger.info("Crawled %d sources", len(snapshot_dirs))
+        for s in crawl_sources:
+            source_statuses[s["name"]] = "checked"
     elif crawl_sources:
         logger.info("Step 1a: Skipping crawl (--skip-crawl)")
+        for s in crawl_sources:
+            source_statuses[s["name"]] = "skipped (--skip-crawl)"
 
     # Step 1b: Fetch Firecrawl monitor results
     if monitor_sources:
         logger.info("Step 1b: Fetching monitor results for %d sources...", len(monitor_sources))
         monitor_results = fetch_monitor_results(monitor_sources)
         logger.info("Got monitor results for %d sources", len(monitor_results))
+
+        for s in monitor_sources:
+            name = s["name"]
+            if name in monitor_results:
+                source_statuses[name] = "checked"
+            else:
+                source_statuses[name] = "checked, no completed checks yet"
 
         for source_name, check_result in monitor_results.items():
             report = build_monitor_diff_report(source_name, check_result)
@@ -66,9 +82,19 @@ def main(skip_crawl: bool = False) -> None:
     significant_count = sum(len(r.significant_changes) for r in all_reports)
     logger.info("Total significant changes (score >= 3): %d", significant_count)
 
+    # Determine if this is a baseline run (no prior snapshots / first monitor check)
+    is_baseline = not all_reports and all(
+        "no completed checks" in v or v == "checked" for v in source_statuses.values()
+    )
+
     if not all_reports:
-        logger.info("No changes detected. Writing empty digest.")
-        write_digest({}, digest_date=today)
+        logger.info("No changes detected. Writing digest with source status.")
+        write_digest(
+            {},
+            digest_date=today,
+            source_statuses=source_statuses,
+            is_baseline=is_baseline,
+        )
         return
 
     # Step 3: Summarize via OpenAI
@@ -76,9 +102,19 @@ def main(skip_crawl: bool = False) -> None:
     summaries = summarize_all(all_reports)
     logger.info("Generated summaries for %d sources", len(summaries))
 
+    # Mark sources with significant changes
+    for source_name in summaries:
+        source_statuses[source_name] = "significant changes detected"
+
     # Step 4: Write Markdown output
     logger.info("Step 4: Writing Markdown...")
-    digest_path = write_digest(summaries, digest_date=today, reports=all_reports)
+    digest_path = write_digest(
+        summaries,
+        digest_date=today,
+        reports=all_reports,
+        source_statuses=source_statuses,
+        is_baseline=is_baseline,
+    )
     questions_path = write_questions(summaries, digest_date=today)
 
     logger.info("=== Done ===")
