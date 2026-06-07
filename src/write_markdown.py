@@ -118,7 +118,7 @@ def _write_system_status_section(
     """Append the System Status section."""
     total = len(source_statuses)
     checked = sum(1 for v in source_statuses.values() if v.startswith("checked") or v == "significant changes detected")
-    failed = sum(1 for v in source_statuses.values() if "failed" in v)
+    failed = sum(1 for v in source_statuses.values() if "failed" in v or "missing" in v)
     skipped = sum(1 for v in source_statuses.values() if "skipped" in v)
 
     lines.append("## System Status")

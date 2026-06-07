@@ -4,12 +4,15 @@ import argparse
 import logging
 import sys
 from datetime import date
+from pathlib import Path
 
 from .crawl import load_sources, run_crawl
 from .diff_engine import DiffReport, build_monitor_diff_report, run_diff
 from .firecrawl_monitoring import fetch_monitor_results
 from .summarize import summarize_all
 from .write_markdown import write_digest, write_questions
+
+SNAPSHOTS_DIR = Path("90 - Raw Snapshots")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -40,7 +43,10 @@ def main(skip_crawl: bool = False) -> None:
         snapshot_dirs = run_crawl(crawl_sources)
         logger.info("Crawled %d sources", len(snapshot_dirs))
         for s in crawl_sources:
-            source_statuses[s["name"]] = "checked"
+            if s["name"] in snapshot_dirs:
+                source_statuses[s["name"]] = "checked"
+            else:
+                source_statuses[s["name"]] = "crawl failed or returned no pages"
     elif crawl_sources:
         logger.info("Step 1a: Skipping crawl (--skip-crawl)")
         for s in crawl_sources:
@@ -56,8 +62,10 @@ def main(skip_crawl: bool = False) -> None:
             name = s["name"]
             if name in monitor_results:
                 source_statuses[name] = "checked"
+            elif not s.get("monitor_id"):
+                source_statuses[name] = "missing monitor_id"
             else:
-                source_statuses[name] = "checked, no completed checks yet"
+                source_statuses[name] = "no completed checks yet"
 
         for source_name, check_result in monitor_results.items():
             report = build_monitor_diff_report(source_name, check_result)
@@ -82,10 +90,21 @@ def main(skip_crawl: bool = False) -> None:
     significant_count = sum(len(r.significant_changes) for r in all_reports)
     logger.info("Total significant changes (score >= 3): %d", significant_count)
 
-    # Determine if this is a baseline run (no prior snapshots / first monitor check)
-    is_baseline = not all_reports and all(
-        "no completed checks" in v or v == "checked" for v in source_statuses.values()
-    )
+    # Determine if this is a baseline run: true only when no source has
+    # prior snapshots to compare against (first-ever run).
+    def _is_first_run() -> bool:
+        if all_reports:
+            return False
+        for s in sources:
+            snap_dir = SNAPSHOTS_DIR / s["name"]
+            if snap_dir.exists() and len(list(snap_dir.iterdir())) >= 2:
+                return False  # has 2+ snapshots → not baseline
+        # Also false if any source failed
+        if any("failed" in v or "missing" in v for v in source_statuses.values()):
+            return False
+        return True
+
+    is_baseline = _is_first_run()
 
     if not all_reports:
         logger.info("No changes detected. Writing digest with source status.")
