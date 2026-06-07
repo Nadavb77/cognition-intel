@@ -90,18 +90,29 @@ def main(skip_crawl: bool = False) -> None:
     significant_count = sum(len(r.significant_changes) for r in all_reports)
     logger.info("Total significant changes (score >= 3): %d", significant_count)
 
-    # Determine if this is a baseline run: true only when no source has
-    # prior snapshots to compare against (first-ever run).
+    # Baseline = first-ever successful run (nothing to compare against).
+    # For crawl sources: baseline when <2 snapshot dirs exist.
+    # For monitor sources: baseline when the API returned no completed
+    # checks (status "no completed checks yet").  Once a monitor has at
+    # least one completed check, it is no longer baseline even if nothing
+    # changed.
     def _is_first_run() -> bool:
         if all_reports:
             return False
-        for s in sources:
-            snap_dir = SNAPSHOTS_DIR / s["name"]
-            if snap_dir.exists() and len(list(snap_dir.iterdir())) >= 2:
-                return False  # has 2+ snapshots → not baseline
-        # Also false if any source failed
         if any("failed" in v or "missing" in v for v in source_statuses.values()):
             return False
+        for s in sources:
+            name = s["name"]
+            mode = s.get("mode", "crawl")
+            status = source_statuses.get(name, "")
+            if mode == "monitor":
+                # A monitor that returned results has prior history
+                if status == "checked":
+                    return False
+            else:
+                snap_dir = SNAPSHOTS_DIR / name
+                if snap_dir.exists() and len(list(snap_dir.iterdir())) >= 2:
+                    return False
         return True
 
     is_baseline = _is_first_run()
