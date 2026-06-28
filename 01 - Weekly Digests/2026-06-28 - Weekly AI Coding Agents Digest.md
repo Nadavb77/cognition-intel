@@ -1,0 +1,464 @@
+# Weekly AI Coding Agents Digest
+
+**Date:** 2026-06-28
+
+---
+
+## Executive Summary
+
+Minor changes were detected but none scored high enough (score ≥ 3) to warrant summarization. Details below.
+
+## Sources Checked
+
+- **devin-docs**: summarization failed — changes detected but not summarized
+- **cognition-blog**: checked, no significant changes
+- **devin-release-notes**: checked, no significant changes
+- **claude-code-docs**: no completed checks yet
+- **github-copilot-docs**: checked, minor changes ignored
+- **github-copilot-coding-agent**: checked, no significant changes
+- **cursor-docs**: no completed checks yet
+- **factory-docs**: summarization failed — changes detected but not summarized
+- **coderabbit-docs**: checked, minor changes ignored
+
+## System Status
+
+- 5/9 sources checked successfully
+- 2 failed sources
+- No secrets printed
+- Digest generated successfully
+
+## Minor Changes Ignored
+
+### devin-docs
+
+- **https://docs.devin.ai** (score 4, product): The changes are limited to descriptive captions for existing videos/images, a minor URL update for the blog, and the addition of a YouTube video embed for a demo. There are no new features, API changes, pricing updates, or technical instructions added.
+- **New page**: https://docs.devin.ai/api-reference/v2/api-keys/list-enterprise-api-keys
+- **New page**: https://docs.devin.ai/api-reference/v2/api-keys/revoke-enterprise-api-key
+- **New page**: https://docs.devin.ai/api-reference/v2/audit-logs
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/consumption-cycles
+- **New page**: https://docs.devin.ai/api-reference/v2/api-keys/provision-service-key
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/daily-consumption
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/pr-metrics
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/searches-metrics
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/sessions-metrics
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/usage-metrics
+- **New page**: https://docs.devin.ai/api-reference/v2/consumption/user-daily-consumption
+- **New page**: https://docs.devin.ai/api-reference/v2/groups/get-group-details
+- **New page**: https://docs.devin.ai/api-reference/v2/groups/list-enterprise-groups
+- **New page**: https://docs.devin.ai/api-reference/v2/infrastructure/list-enterprise-hypervisors
+- **New page**: https://docs.devin.ai/api-reference/v2/members/delete-enterprise-member
+- **New page**: https://docs.devin.ai/api-reference/v2/members/get-member-details
+- **New page**: https://docs.devin.ai/api-reference/v2/members/invite-enterprise-members
+- **New page**: https://docs.devin.ai/api-reference/v2/members/list-enterprise-members
+- **New page**: https://docs.devin.ai/api-reference/v2/members/list-roles
+- **New page**: https://docs.devin.ai/api-reference/v2/members/user-organizations
+- **New page**: https://docs.devin.ai/api-reference/v2/org-group-limits/get-org-group-limits
+- **New page**: https://docs.devin.ai/api-reference/v2/org-group-limits/update-org-group-limits
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/add-group-to-organization
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/add-organization-members
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/add-organization-permissions
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/clone-repository
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/create-organization
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/delete-organization
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/delete-organization-permission
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/get-organization-details
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/list-organizations
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/organization-connections
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/organization-groups
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/organization-members
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/organization-permissions
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/remove-user-from-organization
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/update-organization-member-roles
+- **New page**: https://docs.devin.ai/api-reference/v2/overview
+- **New page**: https://docs.devin.ai/api-reference/v2/organizations/update-organization
+- **New page**: https://docs.devin.ai/api-reference/v2/playbooks/create-playbook
+- **New page**: https://docs.devin.ai/api-reference/v2/playbooks/list-playbooks
+- **New page**: https://docs.devin.ai/api-reference/v2/repositories/bulk-index-repositories
+- **New page**: https://docs.devin.ai/api-reference/v2/repositories/get-repository-status
+- **New page**: https://docs.devin.ai/api-reference/v2/self/get-self
+- **New page**: https://docs.devin.ai/api-reference/v2/sessions/get-enterprise-session
+- **New page**: https://docs.devin.ai/api-reference/v2/sessions/list-enterprise-sessions
+- **New page**: https://docs.devin.ai/api-reference/v2/sessions/list-enterprise-sessions-insights
+- **New page**: https://docs.devin.ai/api-reference/v2/sessions/list-organization-sessions
+- **New page**: https://docs.devin.ai/api-reference/v2/sessions/list-organization-sessions-insights
+- **New page**: https://docs.devin.ai/api-reference/v3/attachments/get-organizations-attachments
+- **New page**: https://docs.devin.ai/api-reference/v3/audit-logs/enterprise-audit-logs
+- **New page**: https://docs.devin.ai/api-reference/v3/attachments/post-organizations-attachments
+- **New page**: https://docs.devin.ai/api-reference/v3/audit-logs/organizations-audit-logs
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-cycles
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-organizations
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-service-users
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-sessions
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-users
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/organizations-consumption-daily-service-users
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/organizations-consumption-daily
+- **New page**: https://docs.devin.ai/api-reference/v3/consumption/organizations-consumption-daily-sessions
+- **Removed page**: https://docs.devin.ai/work-with-devin/devin-review
+- **Removed page**: https://docs.devin.ai/desktop/cascade/mcp
+- **Removed page**: https://docs.devin.ai/cli/extensibility/skills/creating-skills
+- **Removed page**: https://docs.devin.ai/cli/reference/commands
+- **Removed page**: https://docs.devin.ai/cli/reference/permissions
+- **Removed page**: https://docs.devin.ai/cli/extensibility/hooks/overview
+- **Removed page**: https://docs.devin.ai/it/api-reference/v2/user-usage/get-user-usage-analysis-beta
+- **Removed page**: https://docs.devin.ai/desktop/cascade/hooks
+- **Removed page**: https://docs.devin.ai/desktop/best-practices/use-cases
+- **Removed page**: https://docs.devin.ai/cli/extensibility/plugins/overview
+- **Removed page**: https://docs.devin.ai/windsurf/plugins/cascade/memories
+- **Removed page**: https://docs.devin.ai/cli/changelog/stable
+- **Removed page**: https://docs.devin.ai/product-guides/skills
+- **Removed page**: https://docs.devin.ai/desktop/accounts/usage
+- **Removed page**: https://docs.devin.ai/llms.txt
+- **Removed page**: https://docs.devin.ai/product-guides/knowledge
+- **Removed page**: https://docs.devin.ai/work-with-devin/advanced-capabilities
+- **Removed page**: https://docs.devin.ai/desktop/changelog-next
+- **Removed page**: https://docs.devin.ai/work-with-devin/deepwiki
+- **Removed page**: https://docs.devin.ai/desktop/cascade/memories
+- **Removed page**: https://docs.devin.ai/get-started/devin-intro
+- **Removed page**: https://docs.devin.ai/work-with-devin/interactive-planning
+- **Removed page**: https://docs.devin.ai/cli/subagents
+- **Removed page**: https://docs.devin.ai/desktop/devin-desktop-faq
+- **Removed page**: https://docs.devin.ai/windsurf/plugins/getting-started
+- **Removed page**: https://docs.devin.ai/desktop/cascade/workflows
+- **Removed page**: https://docs.devin.ai/use-cases/best-practices
+- **Removed page**: https://docs.devin.ai/cli/reference/configuration/config-file
+- **Removed page**: https://docs.devin.ai/product-guides/creating-playbooks
+- **Removed page**: https://docs.devin.ai/release-notes/2026
+- **Removed page**: https://docs.devin.ai/cli/models
+- **Removed page**: https://docs.devin.ai/cli
+- **Removed page**: https://docs.devin.ai/cli/extensibility/rules
+- **Removed page**: https://docs.devin.ai/cli/extensibility/configuration
+- **Removed page**: https://docs.devin.ai/desktop/terminal
+- **Removed page**: https://docs.devin.ai/api-reference/v3/overview
+- **Removed page**: https://docs.devin.ai/desktop/accounts/quota
+- **Removed page**: https://docs.devin.ai/desktop/adaptive
+- **Removed page**: https://docs.devin.ai/onboard-devin/repo-setup
+- **Removed page**: https://docs.devin.ai/enterprise/integrations/gitlab-self-managed
+- **Removed page**: https://docs.devin.ai/desktop/cascade/cascade
+- **Removed page**: https://docs.devin.ai/windsurf/plugins/cascade/cascade-overview
+- **Removed page**: https://docs.devin.ai/desktop/chat/models
+- **Removed page**: https://docs.devin.ai/desktop/context-awareness/overview
+- **Removed page**: https://docs.devin.ai/desktop/cascade/arena
+- **Removed page**: https://docs.devin.ai/desktop/advanced
+- **Removed page**: https://docs.devin.ai/product-guides/snapshots
+- **Removed page**: https://docs.devin.ai/cli/essential-commands
+- **Removed page**: https://docs.devin.ai/product-guides/scheduled-sessions
+- **Removed page**: https://docs.devin.ai/product-guides/session-insights
+- **Removed page**: https://docs.devin.ai/cli/reference/terminal-compatibility
+- **Removed page**: https://docs.devin.ai/cli/enterprise/controls
+- **Removed page**: https://docs.devin.ai/api-reference/v3/usage-examples
+- **Removed page**: https://docs.devin.ai/enterprise/deployment/overview
+- **Removed page**: https://docs.devin.ai/desktop/changelog
+- **Removed page**: https://docs.devin.ai/desktop/getting-started
+- **Removed page**: https://docs.devin.ai/enterprise/security-access/security/enterprise-security
+- **Removed page**: https://docs.devin.ai/desktop/models
+- **Removed page**: https://docs.devin.ai/work-with-devin/deepwiki-mcp
+- **Removed page**: https://docs.devin.ai/release-notes/overview
+- **Removed page**: https://docs.devin.ai/zh/release-notes/2026
+- **Removed page**: https://docs.devin.ai/desktop/accounts/analytics
+- **Removed page**: https://docs.devin.ai/desktop/guide-for-admins
+
+### github-copilot-docs
+
+- **https://docs.github.com/en/copilot** (score 2, product): The changes are limited to a minor formatting update in a category label ('All categories' to 'Category:All categories') and an increase in the total article count from 410 to 413. No new article titles, feature descriptions, pricing updates, or integration details were added to the visible list.
+- **https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review** (score 1, integration): The documentation was updated with significant new agent capabilities and integration options, including REST API support for requesting reviews, automatic re-reviews on new pushes, and expanded options for how Copilot applies suggested changes (commits vs. new pull requests).
+- **https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/use-the-github-mcp-server** (score 1, integration): The documentation was updated to remove support for AppCode and Writerside IDEs, and internal documentation links were updated. While the link changes are maintenance, the removal of supported IDEs is a relevant change to integration updates.
+- **https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals** (score 1, pricing): The documentation was updated to restrict model access for Free and Student plans to 'auto model selection only', which is a significant change to integration and feature capabilities for those tiers.
+- **https://docs.github.com/en/copilot/concepts/billing/individual-plans** (score 1, pricing): The documentation was updated to reflect a change in how models are accessed for Copilot Free and Student tiers, specifically restricting them to 'auto model selection only' rather than a manual selection of models. This directly impacts the 'integration updates' and 'agent features' scope of the goal by defining how users interact with the underlying AI models.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/copilot-code-review** (score 1, product): The documentation updates include significant new capabilities for Copilot agents, specifically the ability to commit fixes directly to a pull request and the addition of REST API support for requesting reviews. It also introduces new configuration options for automatic re-reviews on every push.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools** (score 1, product): The documentation has been updated to include a new feature for Copilot CLI: Persisted Permissions. This allows users to save tool approvals to a configuration file, which directly relates to the goal of tracking agent features and tool integration updates.
+- **https://docs.github.com/en/copilot/concepts/agents/code-review** (score 1, security): The documentation for Copilot code review (an agent feature) was updated to clarify how enterprise policies apply to organizations and added a new link to configuration instructions for automatic code reviews.
+- **https://docs.github.com/en/copilot/reference/ai-models/supported-models** (score 1, pricing): The documentation reflects a status change for the 'Raptor mini' model from Public Preview to General Availability (GA) and updates model access restrictions for Student and Free users.
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/streaming-events
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-in-your-ide
+- **New page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/pilot-cloud-agent
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/hooks-overview
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-enterprise-policies
+- **New page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/improve-a-project
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-instructions/issue-manager
+- **New page**: https://docs.github.com/en/copilot/tutorials/cloud-agent
+- **New page**: https://docs.github.com/en/copilot/concepts/chat
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-memory
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/integrate-cloud-agent-with-azure-boards
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/configure-runner-for-coding-agent
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/prompt-files/create-readme
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/access-management
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/prepare-for-custom-agents
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-agents/cleanup-specialist
+- **New page**: https://docs.github.com/en/copilot/reference/copilot-feature-matrix
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/fleet-mode
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-automations
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/auth
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/use-cloud-agent-from-cli
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/steering-and-queueing
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/add-copilot-cloud-agent
+- **New page**: https://docs.github.com/en/copilot/reference
+- **New page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/change-mcp-registry
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-automations
+- **New page**: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-config-dir-reference
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/voice-input
+- **New page**: https://docs.github.com/en/copilot/responsible-use
+- **New page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/give-access-to-resources
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/prepare-for-custom-agents
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-a-dedicated-enterprise-for-copilot-business
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-agents/implementation-planner
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-for-common-tasks/use-copilot-in-the-cli
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/manage-as-administrator
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions
+- **New page**: https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/model-multipliers-for-annual-plans
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/review-copilot-output
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/multi-tenancy
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/manage-policies
+- **New page**: https://docs.github.com/en/copilot/concepts/spark
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-agents
+- **New page**: https://docs.github.com/en/copilot/tutorials/optimize-ai-usage
+- **New page**: https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/github-copilot-premium-requests
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk
+- **New page**: https://docs.github.com/en/copilot/tutorials/review-ai-generated-code
+- **New page**: https://docs.github.com/en/copilot/reference/agent-session-filters
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/enable-copilot-code-review
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/integrate-cloud-agent-with-teams
+- **New page**: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/delegate-tasks-to-cca
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/azure-managed-identity
+- **New page**: https://docs.github.com/en/copilot/concepts/models
+- **New page**: https://docs.github.com/en/copilot/tutorials/budgets/optimizing-your-budget-configuration
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/backend-services
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/scaling
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/disable-automatic-commands
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/troubleshooting/mcp-debugging
+- **New page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/configure-toolsets
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/hooks
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/create-custom-agents-in-your-ide
+- **New page**: https://docs.github.com/en/copilot/reference/customization-cheat-sheet
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/hooks/error-handling
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/agentic-code-review
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/troubleshoot-cloud-agent
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-mobile
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review?tool=vscode
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot/troubleshoot-common-issues
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/set-up/install-copilot-extension
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/chronicle
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/github-agentic-workflows/quickstart
+- **Removed page**: https://docs.github.com/en/copilot/tutorials
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/rubber-duck
+- **Removed page**: https://docs.github.com/en/copilot/reference/review-excluded-files
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/integrations/microsoft-agent-framework
+- **Removed page**: https://docs.github.com/en/copilot/concepts/prompting/prompt-engineering
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/github-agentic-workflows/creating-github-agentic-workflows
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/mcp
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/provide-context
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/roll-out-at-scale/drive-downstream-impact/increase-test-coverage
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/research-plan-iterate
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/auth/authenticate
+- **Removed page**: https://docs.github.com/en/copilot/reference/ai-models/model-hosting
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/administer-copilot-cli-for-your-enterprise
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/agent-management
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp
+- **Removed page**: https://docs.github.com/en/copilot/reference/agentic-audit-log-events
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/hooks
+- **Removed page**: https://docs.github.com/en/copilot/concepts/prompting/response-customization
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/agent-apps
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli
+- **Removed page**: https://docs.github.com/en/copilot/get-started/what-is-github-copilot
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions?tool=vscode
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot
+- **Removed page**: https://docs.github.com/en/copilot/concepts/usage-limits
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/monitor-premium-requests
+- **Removed page**: https://docs.github.com/en/copilot/reference/custom-agents-configuration
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/add-lsp-servers
+- **Removed page**: https://docs.github.com/en/copilot/concepts/copilot-usage-metrics/copilot-metrics
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-ai-models/change-the-chat-model
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/chat-with-copilot/get-started-with-chat-in-your-ide
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview
+- **Removed page**: https://docs.github.com/en/copilot/get-started/features
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/github-copilot-app
+- **Removed page**: https://docs.github.com/en/copilot/reference/custom-instructions-support
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/review-audit-logs
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-cli-reference/acp-server
+- **Removed page**: https://docs.github.com/en/copilot/get-started/quickstart
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/github-copilot-app/managing-issues-and-pull-requests
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/integrate-cloud-agent-with-jira
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/openai-codex
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/risks-and-mitigations
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/customize-code-review
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/roll-out-at-scale
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-usage-metrics
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-billing/azure-billing
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/get-the-best-results
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/configure-personal-settings/configure-in-ide
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/lsp-servers
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/use-hooks
+
+### factory-docs
+
+- **https://docs.factory.ai/api-reference/computers/create-a-computer.md** (score 5, security): The changes are limited to indentation, whitespace, and escaping characters (e.g., removing backslashes before hashes and hyphens) within the OpenAPI YAML block. There are no changes to product features, pricing, deployment options, or security protocols.
+- **https://docs.factory.ai/welcome/index.md** (score 1, product): The documentation has been significantly restructured to include new product features and deployment options, specifically adding 'Droid Exec' for CI/CD automation and 'Enterprise' deployment/governance options. It also introduces new capability sections for 'Factory Missions', 'Droid Control', and 'Agent Readiness', which directly relate to product features and deployment goals.
+- **https://docs.factory.ai/guides/building/droid-vps-setup** (score 2, deployment): The only changes detected are updates to the subscriber count on YouTube video embeds. The monitor goal specifically asks for changes to product features, pricing, deployment, security, and competitive positioning, and these minor counter updates do not fall into those categories.
+- **https://docs.factory.ai/cli/droid-exec/overview.md** (score 5, product): The changes are purely mechanical, involving the conversion of markdown formatting to use custom UI components (Tip, Card, Steps, Warning) and fixing escaping characters. There are no changes to product features, pricing, deployment, or security policies.
+- **https://docs.factory.ai/web/missions.md** (score 1, product): The documentation was updated with a new 'See also' section that introduces links to several new feature pages, including Planning & Validation, Troubleshooting, and Configuration & Reference. It also includes minor structural changes to the UI navigation descriptions.
+- **https://docs.factory.ai/support.md** (score 4, product): The changes are purely formatting and UI-related, wrapping existing support links (Email, Discord, GitHub) into Card components. There are no changes to product features, pricing, deployment, security, or competitive positioning.
+- **https://docs.factory.ai/enterprise/service-accounts.md** (score 1, product): The documentation for Service Accounts was updated to include a new permission requirement (owners can now create/edit accounts, not just managers) and the content was restructured into functional categories (CardGroups and Accordions) which clarifies deployment and security best practices.
+- **https://docs.factory.ai/enterprise/network-and-deployment.md** (score 5, product): The changes are limited to markdown formatting fixes, such as removing unnecessary backslashes and adding UI components like CardGroups for existing text. No new product features, pricing, deployment patterns, or security details were added or modified.
+- **https://docs.factory.ai/cli/user-guides/specification-mode.md** (score 5, product): The changes are purely structural and formatting-related. The content has been moved into UI components like <CardGroup>, <Card>, <Steps>, and <Note>, but the actual text describing product features, deployment, and security remains identical to the previous version. No new features, pricing, or positioning details were added.
+- **https://docs.factory.ai/enterprise/models-llm-gateways-and-integrations.md** (score 5, integration): The changes are strictly limited to formatting and syntax normalization. Specifically, the diff shows a transition from escaped characters (like '\*\*\*' and '\#') to standard Markdown syntax ('***' and '#'), and a change in list indentation/bullet styles. No product features, pricing, security policies, or deployment details were modified.
+- **https://docs.factory.ai/guides/power-user/evaluating-context-compression.md** (score 5, product): The changes are purely formatting and character escaping fixes. Backslashes used for escaping markdown characters (like asterisks and hashes) were removed, and a single paragraph was wrapped in an <Info> tag, but no substantive information regarding product features, pricing, or positioning was added, removed, or modified.
+- **New page**: https://docs.factory.ai/features/missions/reference.md
+- **New page**: https://docs.factory.ai/guides/hooks/logging-analytics
+- **New page**: https://docs.factory.ai/api-reference/computers/refresh-a-computer.md
+- **New page**: https://docs.factory.ai/cli/byok/baseten.md
+- **New page**: https://docs.factory.ai/features/missions/troubleshooting.md
+- **New page**: https://docs.factory.ai/benchmarks/terminal-bench.md
+- **New page**: https://docs.factory.ai/api-reference/sessions/get-a-session.md
+- **New page**: https://docs.factory.ai/cli/configuration/skills.md
+- **New page**: https://docs.factory.ai/cli/features/droid-computers-byom
+- **New page**: https://docs.factory.ai/changelog/1-10.md
+- **New page**: https://docs.factory.ai/changelog/release-notes.md
+- **New page**: https://docs.factory.ai/guides/skills/automated-qa
+- **New page**: https://docs.factory.ai/cli/configuration/custom-slash-commands.md
+- **New page**: https://docs.factory.ai/guides/hooks/git-workflows.md
+- **New page**: https://docs.factory.ai/cli/features/droid-computers.md
+- **New page**: https://docs.factory.ai/enterprise/identity-sso-and-scim.md
+- **New page**: https://docs.factory.ai/reference/analytics-api.md
+- **New page**: https://docs.factory.ai/cli/configuration/plugins
+- **New page**: https://docs.factory.ai/cli/configuration/settings.md
+- **New page**: https://docs.factory.ai/cli/byok/ollama
+- **New page**: https://docs.factory.ai/cli/account/droid-shield-plus.md
+- **New page**: https://docs.factory.ai/cli/droid-exec/overview
+- **New page**: https://docs.factory.ai/cli/configuration/sandbox.md
+- **New page**: https://docs.factory.ai/cli/configuration/hooks-guide
+- **New page**: https://docs.factory.ai/enterprise/network-and-deployment
+- **New page**: https://docs.factory.ai/cli/getting-started/how-to-talk-to-a-droid
+- **New page**: https://docs.factory.ai/guides/power-user/setup-checklist.md
+- **New page**: https://docs.factory.ai/features/missions/planning.md
+- **New page**: https://docs.factory.ai/models
+- **New page**: https://docs.factory.ai/web/getting-started/quickstart
+- **Removed page**: https://docs.factory.ai/api-reference/organization/set-user-credits-limits.md
+- **Removed page**: https://docs.factory.ai/cli/byok/groq
+- **Removed page**: https://docs.factory.ai/cli/byok/google-gemini.md
+- **Removed page**: https://docs.factory.ai/cli/account/security.md
+- **Removed page**: https://docs.factory.ai/api-reference/sessions/list-sessions.md
+- **Removed page**: https://docs.factory.ai/cli/features/droid-control
+- **Removed page**: https://docs.factory.ai/guides/power-user/memory-management.md
+- **Removed page**: https://docs.factory.ai/api-reference/service-accounts/create-a-service-account-api-key.md
+- **Removed page**: https://docs.factory.ai/cli/features/wiki/overview
+- **Removed page**: https://docs.factory.ai/api-reference/automations/list-ci-repository-owners.md
+- **Removed page**: https://docs.factory.ai/cli/byok/ollama.md
+- **Removed page**: https://docs.factory.ai/api-reference/sessions/add-a-message-to-a-session.md
+- **Removed page**: https://docs.factory.ai/guides/building/droid-vps-setup.md
+- **Removed page**: https://docs.factory.ai/api-reference/sessions/interrupt-a-session.md
+- **Removed page**: https://docs.factory.ai/cli/features/droid-computers-byom.md
+- **Removed page**: https://docs.factory.ai/cli/byok/baseten
+- **Removed page**: https://docs.factory.ai/api-reference/computers/delete-a-computer.md
+- **Removed page**: https://docs.factory.ai/guides/hooks/testing-automation
+- **Removed page**: https://docs.factory.ai/cli/byok/google-gemini
+- **Removed page**: https://docs.factory.ai/api-reference/computers/update-a-computer.md
+- **Removed page**: https://docs.factory.ai/api-reference/wiki/list-the-latest-wiki-runs.md
+- **Removed page**: https://docs.factory.ai/api-reference/organization/list-organization-users.md
+- **Removed page**: https://docs.factory.ai/changelog/1-9.md
+- **Removed page**: https://docs.factory.ai/api-reference/sessions/delete-a-session.md
+- **Removed page**: https://docs.factory.ai/guides/skills/product-management.md
+- **Removed page**: https://docs.factory.ai/cli/features/missions
+- **Removed page**: https://docs.factory.ai/cli/user-guides/implementing-large-features.md
+- **Removed page**: https://docs.factory.ai/api-reference/computers/get-a-computer.md
+- **Removed page**: https://docs.factory.ai/api-reference/organization/list-enterprise-control-change-history.md
+- **Removed page**: https://docs.factory.ai/api-reference/computers/get-a-computer-by-name.md
+
+### coderabbit-docs
+
+- **https://docs.coderabbit.ai/api-reference/users-list** (score 1, integration): The documentation for the API reference has changed, replacing 'Metrics Data' with 'Learnings'. This represents a change in product features or API capabilities, which falls under the monitoring goal.
+- **https://docs.coderabbit.ai/api-reference/users-manage-seats** (score 1, integration): The removal of API reference links for 'Users' and 'Seat Assignment Mode' represents a change in the documented product features or administrative capabilities, which falls under the user's goal of tracking product features and integrations.
+- **https://docs.coderabbit.ai/cli/codex-integration** (score 1, integration): The documentation for the CodeRabbit CLI has been updated to reflect a change in product features. Specifically, the 'interactive' mode has been replaced by a new 'light' review command, which represents a change in the available functionality and usage patterns of the tool.
+- **https://docs.coderabbit.ai/cli/cursor-integration** (score 1, integration): The documentation for the CLI integration has been updated to reflect a change in product features. Specifically, the '--interactive' mode has been replaced with a new '--light' review command, and the terminology has shifted from 'Output modes' to 'Review commands'.
+- **https://docs.coderabbit.ai/cli/gemini-integration** (score 1, integration): The documentation for the Gemini CLI integration has been updated to reflect a change in product features. Specifically, the '--interactive' mode has been replaced with a new '--light' review command, and a video demo has been added.
+- **https://docs.coderabbit.ai/api-reference/roles-delete** (score 1, security): The documentation for the API reference has been updated to include a new required query parameter ('org_id') for deleting roles. This represents a functional change to the product's API capabilities and integration requirements, which falls under the user's goal of tracking product features and integrations.
+- **https://docs.coderabbit.ai/api-reference/roles-create** (score 1, security): The documentation was updated to include a new required API parameter 'org_id' for creating roles. This represents a functional change to the product's API and integration capabilities, which falls under the user's goal of tracking product features and integrations.
+- **https://docs.coderabbit.ai/api-reference/roles-get** (score 1, security): The documentation was updated to include a new required query parameter ('org_id') for the API, which falls under product features and technical integrations.
+- **https://docs.coderabbit.ai/api-reference/roles-list** (score 1, security): The documentation was updated to include a new required query parameter 'org_id' for the Roles List API endpoint. This represents a functional change in how the API integration works when using workspace-scoped tokens.
+- **https://docs.coderabbit.ai/api-reference/roles-update** (score 1, security): The documentation for the CodeRabbit API has been updated to include a new required field, 'org_id', for role creation and updates. This is a functional change to how integrations and workspace-scoped authentication work, which falls under the user's goal of tracking product features and integrations.
+- **https://docs.coderabbit.ai/api-reference/roles-permissions** (score 1, security): The documentation has been updated to include a new required query parameter ('org_id') for API authentication when using workspace-scoped tokens. This falls under the 'product features' and 'integrations' scope of the monitoring goal as it changes how developers interact with the CodeRabbit API.
+- **https://docs.coderabbit.ai** (score 2, product): The changes are limited to internal documentation URL updates and a footer navigation link change. There are no updates to product features, pricing, integrations, security, or competitive positioning as requested.
+- **https://docs.coderabbit.ai/cli** (score 1, pricing): The documentation was updated to include a new CLI feature ('cr stats') and changes to existing CLI review modes and flags, which falls under tracking product features.
+- **https://docs.coderabbit.ai/cli/claude-code-integration** (score 1, integration): The documentation for the CodeRabbit CLI has been updated to reflect a change in product features. Specifically, the 'interactive' mode/command has been replaced with a 'light' review policy, which represents a change in the available functionality and integration options for the CLI tool.
+- **https://docs.coderabbit.ai/cli/reference** (score 1, integration): The documentation was updated to reflect changes in product features, specifically the renaming of a CLI flag and the addition of a new 'stats' command and functionality.
+- **https://docs.coderabbit.ai/cli/wsl-windows** (score 1, deployment): The documentation for the CLI tool has changed a product feature/command. Specifically, the '--interactive' flag for the terminal UI has been replaced or updated to a '--light' flag for a local review policy. The subscriber count change is ignored as noise.
+- **https://docs.coderabbit.ai/changelog** (score 1, pricing): The changelog contains significant updates to product features (Multi-repo ref selection, Learnings API, new security tools), pricing (Legacy plan sunset), and integrations (Amplemarket, Devin, GitLab reverse tunnel).
+- **https://docs.coderabbit.ai/reference/review-commands** (score 1, pricing): The documentation was updated to reflect expanded platform support for the Autofix feature and enhanced functionality for the configuration command, both of which fall under product features and integrations.
+- **https://docs.coderabbit.ai/reference/configuration** (score 1, product): The documentation was updated with several new product features and integrations, including new security scanners (SkillSpector, React Doctor), a breaking change detector (oasdiff), and new configuration options for repository linking and learning approvals. It also changed the default behavior for the Microsoft Presidio PII analyzer.
+- **https://docs.coderabbit.ai/api-reference/metrics-data-api** (score 1, security): The documentation has been updated to include a new API field 'ready_for_review_at' and a new 'Learnings' API endpoint, which represents a change in product features and API capabilities.
+- **New page**: https://docs.coderabbit.ai/management/plans
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fintegrations%2Fknowledge-base
+- **New page**: https://docs.coderabbit.ai/llms.txt
+- **New page**: https://docs.coderabbit.ai/platforms/github-com.md
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fself-hosted%2Foverview
+- **New page**: https://docs.coderabbit.ai/pr-reviews/cicd-pipeline-analysis
+- **New page**: https://docs.coderabbit.ai/reference/caching.md
+- **New page**: https://docs.coderabbit.ai/platforms/github-enterprise-server
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fabout%2Fdata-usage
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fintegrations%2Fcode-graph-analysis
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fguides%2Fusage-cli
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fblog%2Fpre-merge-checks-built-in-and-custom-pr-enforced
+- **New page**: https://docs.coderabbit.ai/getting-started/yaml-configuration
+- **New page**: https://docs.coderabbit.ai/cli/cli-with-self-hosted-CodeRabbit.md
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fgetting-started%2Fconfigure-coderabbit
+- **New page**: https://docs.coderabbit.ai/overview/architecture.md
+- **New page**: https://docs.coderabbit.ai/management/usage-based-addon
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fplatform%2Fintegration
+- **New page**: https://docs.coderabbit.ai/self-hosted/coderabbit-reverse-tunnel.md
+- **New page**: https://docs.coderabbit.ai/cli/index.md
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fcli%2Foverview
+- **New page**: https://docs.coderabbit.ai/login?redirect=%2Fabout%2Fdata-usage.md
+- **New page**: https://docs.coderabbit.ai/integrations/issue-trackers
+- **New page**: https://docs.coderabbit.ai/api-reference/learnings-list
+- **Removed page**: https://docs.coderabbit.ai/slack-agent
+- **Removed page**: https://docs.coderabbit.ai/pr-reviews/walkthroughs
+- **Removed page**: https://docs.coderabbit.ai/cli/index
+- **Removed page**: https://docs.coderabbit.ai/platforms/self-hosted-gitlab
+- **Removed page**: https://docs.coderabbit.ai/early-access
+- **Removed page**: https://docs.coderabbit.ai/finishing-touches/autofix
+- **Removed page**: https://docs.coderabbit.ai/faq
+- **Removed page**: https://docs.coderabbit.ai/configuration/yaml-validator
+- **Removed page**: https://docs.coderabbit.ai/finishing-touches/custom-finishing-touches
+- **Removed page**: https://docs.coderabbit.ai/configuration/example/typescript/expo
+- **Removed page**: https://docs.coderabbit.ai/configuration/path-instructions
+- **Removed page**: https://docs.coderabbit.ai/pr-reviews/pre-merge-checks
+- **Removed page**: https://docs.coderabbit.ai/platforms/gitlab-com
+- **Removed page**: https://docs.coderabbit.ai/guides/commands
+- **Removed page**: https://docs.coderabbit.ai/cli/headless-cli-integration
+- **Removed page**: https://docs.coderabbit.ai/configuration/ast-grep-instructions
+- **Removed page**: https://docs.coderabbit.ai/configuration/central-configuration
+- **Removed page**: https://docs.coderabbit.ai/configuration/auto-review
+- **Removed page**: https://docs.coderabbit.ai/configuration/configuration-inheritance
+- **Removed page**: https://docs.coderabbit.ai/configuration/example
+- **Removed page**: https://docs.coderabbit.ai/configuration/example/other/mintlify-documentation
+- **Removed page**: https://docs.coderabbit.ai/configuration/example/python/django
+- **Removed page**: https://docs.coderabbit.ai/guides/code-review-overview
+- **Removed page**: https://docs.coderabbit.ai/llms-full.txt
+
+## Sales / Learning Impact
+
+No talk track updates needed this week.
+
+## Next Recommended Action
+
+Review the minor changes above if any look relevant. No action required otherwise.
