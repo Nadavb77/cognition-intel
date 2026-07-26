@@ -1,0 +1,591 @@
+# Weekly AI Coding Agents Digest
+
+**Date:** 2026-07-26
+
+---
+
+## Executive Summary
+
+Minor changes were detected but none scored high enough (score ≥ 3) to warrant summarization. Details below.
+
+## Sources Checked
+
+- **devin-docs**: summarization failed — changes detected but not summarized
+- **cognition-blog**: checked, minor changes ignored
+- **devin-release-notes**: checked, minor changes ignored
+- **claude-code-docs**: no completed checks yet
+- **github-copilot-docs**: summarization failed — changes detected but not summarized
+- **github-copilot-coding-agent**: checked, no significant changes
+- **cursor-docs**: checked, minor changes ignored
+- **factory-docs**: summarization failed — changes detected but not summarized
+- **coderabbit-docs**: summarization failed — changes detected but not summarized
+
+## System Status
+
+- 4/9 sources checked successfully
+- 4 failed sources
+- No secrets printed
+- Digest generated successfully
+
+## Minor Changes Ignored
+
+### devin-docs
+
+- **https://docs.devin.ai/api-reference/v2/organizations/add-organization-members** (score 1, security): The documentation has been updated with new API code samples (Python, JavaScript, PHP, Go, Java, Ruby) and error response schemas for an enterprise organization membership endpoint. This directly relates to the goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/admin/common-issues** (score 2, integration): The only change is a terminology update from 'whitelisting' to 'allowlisting'. The monitor goal explicitly states to ignore minor wording or formatting fixes, and the actual IP addresses (the technical deployment information) remain unchanged.
+- **https://docs.devin.ai/api-reference/v1/attachments/download-attachment-files** (score 1, security): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the attachments endpoint. This falls under the user's goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/attachments/upload-files-for-devin-to-work-with** (score 1, security): The documentation has been updated with extensive new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and detailed error response schemas for the attachments endpoint.
+- **https://docs.devin.ai/api-reference/v1/knowledge/create-knowledge** (score 1, security): The documentation has been updated with extensive code examples for the Knowledge API across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and new error response schemas. This represents a significant update to the API documentation and integration instructions.
+- **https://docs.devin.ai/api-reference/v1/knowledge/delete-knowledge** (score 1, security): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the DELETE knowledge endpoint. This falls under the user's goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/knowledge/list-knowledge** (score 1, security): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the 'knowledge' endpoint, which falls under API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/knowledge/update-knowledge** (score 1, product): The documentation has been updated with extensive new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) specifically for the 'Update Knowledge' endpoint, as well as new error response schemas.
+- **https://docs.devin.ai/api-reference/v1/playbooks/delete-playbook** (score 1, security): The documentation has been updated with new API code examples for deleting playbooks across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and a new error response schema for 422 Unprocessable Entity errors.
+- **https://docs.devin.ai/api-reference/v1/playbooks/create-playbook** (score 1, security): The documentation has been updated to include a new API endpoint for creating team playbooks (`https://api.devin.ai/v1/playbooks`), including code examples in multiple languages (Python, JavaScript, PHP, Go, Java, Ruby) and new error response schemas.
+- **https://docs.devin.ai/api-reference/v1/playbooks/list-playbooks** (score 1, security): The documentation has been updated to include new API code examples for the 'playbooks' endpoint across multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby). This represents a significant update to integration instructions and API usage documentation.
+- **https://docs.devin.ai/api-reference/v1/playbooks/get-playbook** (score 1, security): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and new error response schemas for the Playbooks endpoint. This directly relates to the goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/secrets/create-secret** (score 1, security): The documentation has been updated to include new API code examples for managing secrets via the 'https://api.devin.ai/v1/secrets' endpoint across multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby). This constitutes a significant update to API documentation and security-related features.
+- **https://docs.devin.ai/api-reference/v1/playbooks/update-playbook** (score 1, security): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and new error response schemas for the 'Update an existing team playbook' endpoint. This directly relates to the goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/secrets/list-secrets** (score 1, security): The documentation has been updated to include new code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for interacting with the Devin API secrets endpoint. This falls under integration updates and API changes.
+- **https://docs.devin.ai/api-reference/v1/secrets/delete-secret** (score 1, security): The documentation has been updated to include new API code examples for deleting secrets across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and added detailed error response schemas. This directly relates to the goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/sessions/create-a-new-devin-session** (score 1, security): The documentation has been updated with extensive code examples for creating a new Devin session across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and detailed error response schemas. This directly relates to the goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/sessions/list-sessions** (score 1, security): The documentation has been updated with new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and more detailed error response schemas for the sessions endpoint.
+- **https://docs.devin.ai/api-reference/v1/sessions/send-a-message-to-an-existing-devin-session** (score 1, security): The documentation has been updated to include comprehensive code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) for the 'send a message to an existing Devin session' API endpoint, as well as a new detailed error response schema for 422 Unprocessable Entity errors.
+- **https://docs.devin.ai/api-reference/v1/sessions/retrieve-details-about-an-existing-session** (score 1, security): The documentation has been updated with new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and a new detailed error response schema for the session retrieval endpoint.
+- **https://docs.devin.ai/api-reference/v1/sessions/terminate-a-session** (score 1, security): The documentation has been updated to include multi-language code samples (Python, JavaScript, PHP, Go, Java, Ruby) and detailed error response schemas for the session termination API endpoint. This falls under API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v1/sessions/update-session-tags** (score 1, product): The documentation has been updated with new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and a new error response schema for the session tags endpoint.
+- **https://docs.devin.ai/api-reference/v2/api-keys/provision-service-key** (score 1, security): The documentation has been updated to include a new API endpoint for managing enterprise API keys, including code samples in multiple languages and error response schemas.
+- **https://docs.devin.ai/api-reference/v2/api-keys/list-enterprise-api-keys** (score 1, security): The documentation has been updated to include new API endpoints and code examples for managing enterprise API keys, which falls under the user's goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v2/api-keys/revoke-enterprise-api-key** (score 1, security): The documentation has been updated with new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and detailed error response schemas for the enterprise API key revocation endpoint.
+- **https://docs.devin.ai/api-reference/v2/audit-logs** (score 1, security): The documentation has been updated to include a new API endpoint for enterprise audit logs, including code samples in multiple languages (Python, JavaScript, PHP, Go, Java, Ruby) and new error response schemas.
+- **https://docs.devin.ai/admin/billing/usage** (score 1, pricing): The documentation was updated to include a new feature regarding Personal Analytics for enterprise users, allowing them to track their own ACU consumption across organizations. This falls under the user's goal of tracking new features and integration/security updates.
+- **https://docs.devin.ai/api-reference/v2/consumption/consumption-cycles** (score 1, security): The documentation has been updated to include new API code examples for enterprise consumption tracking (cycles) across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby). This falls under the user's goal of tracking API changes and integration updates.
+- **https://docs.devin.ai/api-reference/v2/consumption/pr-metrics** (score 1, security): The documentation has been updated with new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) and a new error response schema for the enterprise metrics endpoint.
+- **https://docs.devin.ai/api-reference/v2/consumption/searches-metrics** (score 1, security): The documentation has been updated with a new API endpoint for enterprise search metrics, including code examples in multiple languages (Python, JavaScript, PHP, Go, Java, Ruby) and a new error response schema.
+- **https://docs.devin.ai/api-reference/v2/consumption/daily-consumption** (score 1, security): The documentation has been updated to include a new API endpoint for enterprise consumption tracking ('/v2/enterprise/consumption/daily'), including code samples in multiple languages and new error response schemas. This directly relates to the goal of tracking API changes and new features.
+- **https://docs.devin.ai** (score 3, product): The change involves the removal of an embedded YouTube video demonstration showing Devin in Slack. This is a removal of marketing/media content rather than a change to features, API, deployment instructions, pricing, or security documentation.
+- **New page**: https://docs.devin.ai/pt-BR/use-cases/data-analysis
+- **New page**: https://docs.devin.ai/ja/use-cases/gallery/api-datadog-alert-investigation
+- **New page**: https://docs.devin.ai/fr/api-reference/v3/notes/delete-enterprise-knowledge-notes-note-id
+- **New page**: https://docs.devin.ai/fr/desktop/acp-custom
+- **New page**: https://docs.devin.ai/cli/extensibility/skills/overview
+- **New page**: https://docs.devin.ai/api-reference/v3/notes/organizations-knowledge-folders
+- **New page**: https://docs.devin.ai/fr/api-reference/v2/organizations/delete-organization-permission
+- **New page**: https://docs.devin.ai/it/integrations/self-hosted-scm-artifacts
+- **New page**: https://docs.devin.ai/de/desktop/troubleshooting/plugins-enterprise/eclipse
+- **New page**: https://docs.devin.ai/it/enterprise/security-access/ip-access-lists
+- **New page**: https://docs.devin.ai/fr/enterprise/security-access/idp-groups
+- **New page**: https://docs.devin.ai/fr/windsurf/plugins/cascade/models
+- **New page**: https://docs.devin.ai/de/api-reference/v3/notes/organizations-knowledge-folders
+- **New page**: https://docs.devin.ai/fr/onboard-devin/environment/blueprints
+- **New page**: https://docs.devin.ai/zh/api-reference/v1/attachments/upload-files-for-devin-to-work-with
+- **New page**: https://docs.devin.ai/de/integrations/pr-templates
+- **New page**: https://docs.devin.ai/de/cli/adaptive
+- **New page**: https://docs.devin.ai/pt-BR/api-reference/v3/sessions/get-organizations-session
+- **New page**: https://docs.devin.ai/pt-BR/desktop/cascade/arena
+- **New page**: https://docs.devin.ai/it/work-with-devin/mcp
+- **New page**: https://docs.devin.ai/zh/api-reference/v2/audit-logs
+- **New page**: https://docs.devin.ai/zh/use-cases/gallery/mongodb-to-postgres-migration
+- **New page**: https://docs.devin.ai/fr/desktop/changelog-next
+- **New page**: https://docs.devin.ai/es/cloud/outposts/quickstart
+- **New page**: https://docs.devin.ai/ja/desktop/accounts/sso-scim
+- **New page**: https://docs.devin.ai/ja/api-reference/v3/ip-access-list/get-ip-access-list
+- **New page**: https://docs.devin.ai/es/api-reference/v3/playbooks/delete-organizations-playbooks-playbook-id
+- **New page**: https://docs.devin.ai/zh/api-reference/v3/ip-access-list/get-ip-access-list
+- **New page**: https://docs.devin.ai/es/desktop/cascade/arena
+- **New page**: https://docs.devin.ai/de/api-reference/v3/playbooks/post-enterprise-playbooks
+- **New page**: https://docs.devin.ai/fr/onboard-devin/index-repo
+- **New page**: https://docs.devin.ai/pt-BR/cloud/outposts/partners
+- **New page**: https://docs.devin.ai/ja/release-notes/2025
+- **New page**: https://docs.devin.ai/fr/onboard-devin/environment/templates
+- **New page**: https://docs.devin.ai/enterprise/integrations/git-integrations
+- **New page**: https://docs.devin.ai/fr/api-reference/v3/metrics/metrics-sessions
+- **New page**: https://docs.devin.ai/product-guides/automations.md
+- **New page**: https://docs.devin.ai/it/api-reference/v3/sessions/post-organizations-sessions-archive
+- **New page**: https://docs.devin.ai/it/desktop/accounts/api-reference/cascade-analytics
+- **New page**: https://docs.devin.ai/ja/desktop/enterprise-policies
+- **New page**: https://docs.devin.ai/desktop/changelog.md
+- **New page**: https://docs.devin.ai/it/desktop/troubleshooting/windsurf-ssl-inspection
+- **New page**: https://docs.devin.ai/ja/api-reference/v3/organizations/post-organizations
+- **New page**: https://docs.devin.ai/desktop/recommended-plugins
+- **New page**: https://docs.devin.ai/ja/api-reference/v1/playbooks/get-playbook
+- **New page**: https://docs.devin.ai/ja/api-reference/v1/attachments/upload-files-for-devin-to-work-with
+- **New page**: https://docs.devin.ai/admin/security.md
+- **New page**: https://docs.devin.ai/ja/onboard-devin/environment/github-actions
+- **New page**: https://docs.devin.ai/ja/api-reference/v3/sessions/get-enterprise-session
+- **New page**: https://docs.devin.ai/it/api-reference/v2/members/list-roles
+- **New page**: https://docs.devin.ai/enterprise/security-access/ip-access-lists
+- **New page**: https://docs.devin.ai/it/desktop/changelog-next
+- **New page**: https://docs.devin.ai/fr/enterprise/integrations/sentry
+- **New page**: https://docs.devin.ai/ja/enterprise/security-access/sso/guide
+- **Removed page**: https://docs.devin.ai/api-reference/v2/sessions/list-organization-sessions-insights
+- **Removed page**: https://docs.devin.ai/api-reference/v3/code-scans/enterprise-code-scans-findings
+- **Removed page**: https://docs.devin.ai/api-reference/v3/code-scans/enterprise-code-scans-metrics
+- **Removed page**: https://docs.devin.ai/api-reference/v3/code-scans/enterprise-code-scans-remediate
+- **Removed page**: https://docs.devin.ai/api-reference/v2/sessions/list-organization-sessions
+- **Removed page**: https://docs.devin.ai/api-reference/v2/sessions/list-enterprise-sessions-insights
+- **Removed page**: https://docs.devin.ai/api-reference/v2/sessions/get-enterprise-session
+- **Removed page**: https://docs.devin.ai/api-reference/v2/self/get-self
+- **Removed page**: https://docs.devin.ai/api-reference/v2/repositories/get-repository-status
+- **Removed page**: https://docs.devin.ai/api-reference/v2/repositories/bulk-index-repositories
+- **Removed page**: https://docs.devin.ai/api-reference/v2/playbooks/list-playbooks
+- **Removed page**: https://docs.devin.ai/api-reference/v2/playbooks/create-playbook
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/update-organization
+- **Removed page**: https://docs.devin.ai/api-reference/v2/overview
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/remove-user-from-organization
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/organization-permissions
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/organization-groups
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/list-organizations
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/get-organization-details
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/delete-organization
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/create-organization
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/clone-repository
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/add-organization-permissions
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/add-group-to-organization
+- **Removed page**: https://docs.devin.ai/api-reference/v2/org-group-limits/get-org-group-limits
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/list-roles
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/list-enterprise-members
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/invite-enterprise-members
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/get-member-details
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/delete-enterprise-member
+- **Removed page**: https://docs.devin.ai/api-reference/v2/infrastructure/list-enterprise-hypervisors
+- **Removed page**: https://docs.devin.ai/api-reference/v2/groups/list-enterprise-groups
+- **Removed page**: https://docs.devin.ai/api-reference/v2/org-group-limits/update-org-group-limits
+- **Removed page**: https://docs.devin.ai/api-reference/v2/groups/get-group-details
+- **Removed page**: https://docs.devin.ai/api-reference/v2/consumption/user-daily-consumption
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/delete-organization-permission
+- **Removed page**: https://docs.devin.ai/api-reference/v2/consumption/usage-metrics
+- **Removed page**: https://docs.devin.ai/api-reference/v2/consumption/sessions-metrics
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/organization-connections
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/organization-members
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-organizations
+- **Removed page**: https://docs.devin.ai/api-reference/v2/members/user-organizations
+- **Removed page**: https://docs.devin.ai/api-reference/v2/sessions/list-enterprise-sessions
+- **Removed page**: https://docs.devin.ai/api-reference/v2/organizations/update-organization-member-roles
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-users
+- **Removed page**: https://docs.devin.ai/api-reference/v2/user-usage/get-user-usage-analysis-beta
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-sessions
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily-service-users
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-daily
+- **Removed page**: https://docs.devin.ai/api-reference/v3/consumption/consumption-cycles
+- **Removed page**: https://docs.devin.ai/api-reference/v3/audit-logs/organizations-audit-logs
+- **Removed page**: https://docs.devin.ai/api-reference/v3/attachments/post-organizations-attachments
+- **Removed page**: https://docs.devin.ai/api-reference/v3/audit-logs/enterprise-audit-logs
+- **Removed page**: https://docs.devin.ai/api-reference/v3/attachments/get-organizations-attachments
+
+### cognition-blog
+
+- **https://cognition.ai/blog** (score 1, pricing): Three new blog posts were added to the top of the feed, covering company acquisitions and a major government partnership, which directly matches the goal of tracking product announcements and company news.
+
+### devin-release-notes
+
+- **https://docs.devin.ai/changelog** (score 2, integration): The page has changed to a 'Page Not Found' error state. While it now displays a link to a changelog, no actual release notes, features, bug fixes, or changelog entries were added to the content of this page.
+
+### github-copilot-docs
+
+- **https://docs.github.com/en/copilot** (score 3, product): The changes detected are limited to UI navigation elements ('Collapse sidebar', 'Scroll breadcrumbs') and a metadata counter for the total number of documents ('416' to '425'). There are no updates to the actual content regarding agent features, coding capabilities, deployment, or pricing as requested.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/add-custom-instructions/add-repository-instructions** (score 1, product): The documentation was updated to reflect a significant change in how Copilot agents and code reviews process instructions. It now prioritizes instructions and skills from the 'head' branch rather than the 'base' branch, which directly impacts agent behavior and testing capabilities.
+- **https://docs.github.com/en/copilot/concepts/agents/code-review** (score 1, product): The documentation was updated with significant new details regarding Copilot agent features, specifically how it handles instructions/skills during code reviews and a new comparison table for customization options. It also added information about GitHub Code Quality integration features like hybrid detection and one-click fixes.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-marketplace** (score 3, deployment): The changes are limited to UI navigation elements (sidebar and breadcrumb controls) and internal URL path updates for the plugin reference documentation. There are no updates to agent features, coding capabilities, enterprise options, or pricing.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/create-custom-agents** (score 3, deployment): The only changes are to the page navigation (sidebar/breadcrumbs) and a documentation link update. There are no changes to agent features, coding capabilities, pricing, or deployment options.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/use-copilot-agents/manage-and-track-agents** (score 2, product): The changes are limited to mechanical UI elements (sidebar and breadcrumb navigation controls) and do not affect the documentation content regarding Copilot agents, features, or pricing.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/overview** (score 1, deployment): The documentation for GitHub Copilot CLI has been updated with new functional capabilities for managing settings, including a new '/settings show' command and updated keyboard shortcuts for resetting settings. Additionally, several internal documentation links were updated to reflect a new organizational structure for agent and customization features.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/configure-mcp-servers** (score 3, deployment): The changes are limited to UI navigation label updates ('Code & automation' to 'Code, planning, and automation') and internal documentation URL path updates. There are no changes to agent features, coding capabilities, pricing, or integration functionality.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/authenticate-copilot-cli** (score 2, security): The only changes detected are mechanical updates to the page navigation (sidebar and breadcrumb controls). There are no updates to the documentation content regarding agent features, coding capabilities, enterprise options, or pricing.
+- **https://docs.github.com/en/copilot/reference/ai-models/supported-models** (score 1, product): The documentation has been updated to include several new AI models (GPT-5.6 Luna/Sol/Terra, Claude Opus 5, and Gemini 3.6 Flash) and their availability across different IDEs and Copilot plans. Additionally, a new 'GitHub Copilot app' column was added to the auto-model selection table, indicating a new integration or deployment surface.
+- **https://docs.github.com/en/copilot/reference/copilot-billing** (score 2, pricing): The only changes detected are related to the page's navigation interface (sidebar and breadcrumb controls). There are no updates to the documentation content regarding agent features, enterprise deployment, pricing, or integrations.
+- **https://docs.github.com/en/copilot/tutorials/roll-out-at-scale/drive-downstream-impact/accelerate-pull-requests** (score 3, product): The changes are limited to internal documentation URL updates and UI navigation elements (sidebar/breadcrumbs). There are no updates to agent features, coding capabilities, pricing, or deployment options as requested.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/automate-with-actions** (score 3, deployment): The only changes detected are navigation UI elements ('Collapse sidebar', 'Scroll breadcrumbs') and a version update for a standard GitHub Action ('actions/setup-node@v4' to '@v7'). These do not relate to Copilot agent features, enterprise deployment, pricing, or integration capabilities as specified in the goal.
+- **https://docs.github.com/en/copilot/responsible-use/chat** (score 4, product): The changes are limited to internal documentation link updates and the addition of UI navigation elements (sidebar/breadcrumb controls). There are no updates to agent features, coding capabilities, enterprise options, or pricing.
+- **https://docs.github.com/en/copilot/how-tos/use-ai-models/change-the-chat-model** (score 4, product): The changes are exclusively updates to internal documentation links and URL paths. There are no changes to features, capabilities, pricing, or deployment options as requested by the goal.
+- **https://docs.github.com/en/copilot/tutorials** (score 3, product): The changes are limited to UI navigation elements ('Collapse sidebar', 'Scroll breadcrumbs') and a minor update to the total count of tutorials (from 102 to 105). No new content, features, or documentation regarding agents, enterprise deployment, or pricing were added to the visible list.
+- **https://docs.github.com/en/copilot/concepts/prompting/response-customization** (score 1, product): The documentation was updated to reflect a significant change in how Copilot handles custom instructions and agent skills during pull request reviews. It now prioritizes the head branch over the base branch, which directly impacts agent behavior and feature testing.
+- **https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/configure-toolsets** (score 3, product): The changes are limited to UI navigation elements (sidebar and breadcrumb controls) and internal URL path updates for existing documentation links. There are no updates to agent features, coding capabilities, pricing, or enterprise deployment options.
+- **https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-organizations-and-enterprises** (score 2, pricing): The only changes detected are related to the page navigation interface (sidebar and breadcrumb controls). There are no updates to the documentation content regarding agent features, deployment, pricing, or integrations.
+- **https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli** (score 3, product): The changes are limited to internal documentation URL updates and UI navigation elements (sidebar/breadcrumbs). There are no updates to agent features, coding capabilities, pricing, or deployment options as requested.
+- **https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing** (score 1, pricing): The page diff shows the addition of several new AI models and their associated pricing to the GitHub Copilot documentation, including new GPT-5.6 variants, Claude Opus 5, and Gemini 3.6 Flash. These changes directly relate to the user's goal of tracking pricing and model updates.
+- **https://docs.github.com/en/copilot/how-tos/configure-personal-settings/authenticate-to-ghecom** (score 3, pricing): The only changes detected are navigation UI elements ('Collapse sidebar', 'Scroll breadcrumbs') and a documentation link update. There are no changes to agent features, coding capabilities, enterprise options, or pricing as requested.
+- **https://docs.github.com/en/copilot/responsible-use/agents** (score 4, product): The changes are limited to internal documentation URL path updates and UI elements (sidebar/breadcrumbs). There are no updates to agent features, coding capabilities, pricing, or deployment options as requested.
+- **https://docs.github.com/en/copilot/concepts/agents/enterprise-management** (score 3, security): The changes are limited to UI navigation elements (sidebar/breadcrumb controls), a minor heading rename ('Adopting' to 'Preparing'), a documentation series count update, and a link path update for legacy billing. These do not represent changes to agent features, coding capabilities, deployment options, or pricing structures.
+- **https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/manage-access/grant-access** (score 3, pricing): The changes are limited to internal documentation link updates, minor UI text adjustments ('Collapse sidebar'), and slight rephrasing of navigation instructions. There are no updates to agent features, coding capabilities, deployment options, or pricing.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/enable-copilot/set-up-for-teachers-and-os-maintainers** (score 3, pricing): The changes are limited to internal documentation link updates and UI navigation elements (sidebar/breadcrumb controls). There are no changes to Copilot features, agent capabilities, pricing, or deployment options.
+- **https://docs.github.com/en/copilot/concepts/billing/organizations-and-enterprises** (score 3, pricing): The changes are limited to internal documentation link updates and UI navigation elements (sidebar/breadcrumbs). There are no changes to the actual pricing, features, deployment options, or integration details described in the text.
+- **https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review** (score 1, deployment): The documentation has been updated with significant new information regarding Copilot agent capabilities, specifically how code reviews use GitHub Actions for agentic capabilities, the introduction of AGENTS.md for repository context, and new environment customization options using workflow files.
+- **https://docs.github.com/en/copilot/concepts/context/mcp** (score 1, product): The documentation was updated to include a new 'Agent finder' feature, which directly relates to the goal of tracking agent features and capabilities. Other changes are minor URL path updates and UI chrome.
+- **https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/monitor-premium-requests** (score 3, pricing): The only changes detected are UI navigation elements (sidebar and breadcrumb controls) and a minor update to an internal documentation link URL. There are no changes to agent features, coding capabilities, deployment options, pricing, or integration details.
+- **https://docs.github.com/en/copilot/concepts/context/spaces** (score 3, product): The changes are limited to UI navigation elements (sidebar and breadcrumb controls) and a URL path update for a documentation link. There are no updates to agent features, coding capabilities, enterprise options, or pricing.
+- **https://docs.github.com/en/copilot/concepts/usage-limits** (score 2, docs-only): The only changes detected are related to the page's navigation interface (sidebar and breadcrumb controls). There are no updates to the documentation content, agent features, deployment options, or pricing.
+- **https://docs.github.com/en/copilot/reference/ai-models/model-comparison** (score 1, pricing): The documentation was updated to include several new AI models (GPT-5.6 Luna/Sol/Terra, Claude Opus 5, and Gemini 3.6 Flash) and their specific capabilities for coding and agentic tasks. It also updated model card links for existing Claude models.
+- **https://docs.github.com/en/copilot/get-started/features** (score 4, product): The changes consist entirely of documentation URL updates and minor UI chrome additions (sidebar/breadcrumb controls). There are no changes to the actual features, agent capabilities, pricing, or deployment options described in the text.
+- **https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/use-the-github-mcp-server** (score 4, integration): The changes consist entirely of internal documentation link updates and the addition of UI navigation elements (sidebar/breadcrumb controls). There are no changes to agent features, coding capabilities, pricing, or enterprise deployment options as requested in the goal.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-access-to-ai-models** (score 1, pricing): The documentation has been updated to include a new section on 'Custom models' and 'Bring your own key (BYOK)' capabilities. This directly relates to the user's goal of tracking enterprise deployment options and integration updates, as it introduces new mechanisms for organization and enterprise owners to provide custom models to users.
+- **https://docs.github.com/en/copilot/concepts/agents/github-copilot-app** (score 1, product): The availability of the GitHub Copilot app has changed from 'paid Copilot plans' to 'all Copilot plans', which directly impacts the pricing and deployment scope defined in the monitoring goal.
+- **https://docs.github.com/en/copilot/reference/copilot-cli-reference/acp-server** (score 1, product): The documentation for the Copilot CLI Agent Client Protocol (ACP) server has been significantly expanded with new agent features, configuration options, and integration details. Key updates include new server-side flags for tool filtering and reasoning effort, a detailed comparison of transport modes (stdio vs TCP), and a new section on using slash commands and skills over ACP.
+- **https://docs.github.com/en/copilot/reference/ai-models/model-hosting** (score 1, deployment): The documentation was updated with several new AI models for GitHub Copilot, including new versions from OpenAI, Anthropic, and Google. Additionally, there are significant updates to data training policies for individual subscribers and new hosting details for Microsoft's MAI-Code-1-Flash model.
+- **https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/enterprise-configuration** (score 3, product): The changes are limited to UI navigation elements (sidebar/breadcrumbs) and internal link path updates. There are no updates to agent features, enterprise deployment options, pricing, or functional integration details.
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/add-skills** (score 3, product): The changes are limited to internal documentation link updates and UI navigation elements (sidebar/breadcrumb controls). There are no updates to agent features, coding capabilities, pricing, or enterprise options.
+- **https://docs.github.com/en/copilot/reference/copilot-allowlist-reference** (score 1, pricing): The documentation was updated with a new section regarding enterprise deployment and network configuration, specifically detailing how to enable user sign-in on restricted networks. This falls under the 'enterprise deployment options' and 'integration updates' categories of the monitoring goal.
+- **https://docs.github.com/en/copilot/how-tos/copilot-cli** (score 1, product): The documentation was updated to include a new section on 'Extensions for GitHub Copilot CLI', which directly relates to the user's goal of tracking agent features and integration updates. Additionally, a section regarding 'custom instructions' was removed.
+- **https://docs.github.com/en/copilot/reference/copilot-billing/request-based-billing-legacy/what-changed-with-billing** (score 2, pricing): The only changes detected are related to the page's navigation interface (sidebar and breadcrumb controls). There are no updates to the documentation content, agent features, deployment options, or pricing information.
+- **https://docs.github.com/en/copilot/concepts/agents/about-third-party-coding-agents** (score 3, product): The changes are limited to UI navigation elements (sidebar/breadcrumbs) and internal documentation URL path updates. There are no changes to agent features, coding capabilities, pricing, or deployment options.
+- **https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/custom-agents** (score 1, product): The documentation for Copilot custom agents has been updated with new agent features, specifically the ability to override models and reasoning effort at the agent level. Additionally, the SDK examples have been updated to reference a newer model version (gpt-5.4).
+- **https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/configure-secrets-and-variables** (score 3, deployment): The only changes detected are updates to internal documentation links and the addition of UI navigation elements (sidebar/breadcrumb controls). There are no changes to agent features, capabilities, pricing, or deployment options.
+- **https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server** (score 4, integration): The changes consist entirely of internal documentation link updates and UI chrome additions (sidebar/breadcrumb controls). There are no changes to agent features, coding capabilities, enterprise options, pricing, or integration functionality.
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-best-practices
+- **New page**: https://docs.github.com/en/copilot/reference/policy-conflicts
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-creating
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/enable-custom-models
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/integrations/microsoft-agent-framework
+- **New page**: https://docs.github.com/en/copilot/tutorials/budgets/optimizing-your-budget-configuration
+- **New page**: https://docs.github.com/en/copilot/how-tos/github-copilot-app/using-automations
+- **New page**: https://docs.github.com/en/copilot?tool=vscode
+- **New page**: https://docs.github.com/en/copilot/concepts/tools/ai-tools
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/rubber-duck
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/integrate-cloud-agent-with-linear
+- **New page**: https://docs.github.com/en/copilot/concepts/policies
+- **New page**: https://docs.github.com/en/copilot/how-tos/github-agentic-workflows/quickstart
+- **New page**: https://docs.github.com/en/copilot/tutorials/spark/deploy-from-cli
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/chronicle
+- **New page**: https://docs.github.com/en/copilot/tutorials/customization-library/prompt-files/generate-unit-tests
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/hooks
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/steer-agents
+- **New page**: https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions
+- **New page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/copilot-memory/manage-for-yourself
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/github-oauth
+- **New page**: https://docs.github.com/en/copilot/tutorials/copilot-cookbook/analyze-security/find-vulnerabilities
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-remote-control
+- **New page**: https://docs.github.com/en/copilot/reference/custom-agents-configuration
+- **New page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/extend-copilot-chat-with-mcp
+- **New page**: https://docs.github.com/en/copilot/tutorials/reduce-technical-debt
+- **New page**: https://docs.github.com/en/copilot/how-tos/configure-content-exclusion/exclude-content-from-copilot
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/agent-management
+- **New page**: https://docs.github.com/en/copilot/tutorials/upgrade-projects
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/copilot-spaces/collaborate-with-others
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-cli/autopilot
+- **New page**: https://docs.github.com/en/copilot/how-tos/troubleshoot-copilot
+- **New page**: https://docs.github.com/en/copilot/tutorials/copilot-cookbook/communicate-effectively/creating-diagrams
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/view-impact-dashboard
+- **New page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-access/grant-access
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/about-github-agentic-workflows
+- **New page**: https://docs.github.com/en/copilot/how-tos/cloud-and-local-sandboxes/configuring-local-sandbox-settings
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/getting-started
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/cli-getting-started
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/troubleshoot-copilot-cli-auth
+- **New page**: https://docs.github.com/en/copilot/concepts/chat
+- **New page**: https://docs.github.com/en/copilot/concepts/agents/copilot-memory
+- **New page**: https://docs.github.com/en/copilot/reference/custom-instructions-support
+- **New page**: https://docs.github.com/en/copilot/tutorials/optimize-code-reviews
+- **New page**: https://docs.github.com/en/copilot/concepts/billing/budgets-for-usage-based-billing
+- **New page**: https://docs.github.com/en/copilot/tutorials/modernize-java-applications
+- **New page**: https://docs.github.com/en/copilot/how-tos/github-copilot-app/customize-github-copilot-app
+- **New page**: https://docs.github.com/en/copilot/how-tos/manage-your-account/view-and-change-your-copilot-plan
+- **New page**: https://docs.github.com/en/copilot/tutorials/budgets/getting-started-with-budget-controls
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/chat-with-copilot/chat-in-github
+- **New page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/auth/authenticate
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/build-guardrails
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/give-access-to-resources
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-usage-metrics/interpret-copilot-metrics
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/features/steering-and-queueing
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent/access-management
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/cloud-agent
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/review-audit-logs
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/github-copilot-app/managing-issues-and-pull-requests
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing.md
+- **Removed page**: https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/set-up-copilot-cli/install-copilot-cli
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/openai-codex
+- **Removed page**: https://docs.github.com/en/copilot/concepts/billing/individual-plans
+- **Removed page**: https://docs.github.com/en/copilot/concepts/context/content-exclusion
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/integrate-cloud-agent-with-slack
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/customization-library/prompt-files/your-first-prompt-file
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-programmatic-reference
+- **Removed page**: https://docs.github.com/en/copilot/concepts/models/fedramp-models
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/customize-cloud-agent/customize-the-agent-firewall
+- **Removed page**: https://docs.github.com/en/copilot/get-started/what-is-github-copilot
+- **Removed page**: https://docs.github.com/en/copilot/reference/agentic-audit-log-events
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/changing-the-ai-model
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-feature-matrix
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/about-agent-skills
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-instructions/your-first-custom-instructions
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/roll-out-at-scale/drive-downstream-impact/increase-test-coverage
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/use-copilot-cli/allowing-tools
+- **Removed page**: https://docs.github.com/en/copilot/reference/review-excluded-files
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-copilot-agents/cloud-agent/troubleshoot-cloud-agent
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/cloud-agent/get-the-best-results
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/copilot-for-github-tasks/using-the-github-mcp-server-from-copilot-chat
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/get-code-suggestions/get-ide-code-suggestions
+- **Removed page**: https://docs.github.com/en/copilot/concepts/network-settings
+- **Removed page**: https://docs.github.com/en/copilot/reference/customization-cheat-sheet
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/provide-context/use-mcp-in-your-ide/set-up-the-github-mcp-server?tool=vscode
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/use-ai-models/change-the-completion-model?tool=vscode
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/write-tests
+- **Removed page**: https://docs.github.com/en/copilot/concepts/billing
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-mcp-usage/configure-mcp-registry
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/migrate-a-project
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/copilot-cookbook/document-code
+- **Removed page**: https://docs.github.com/en/copilot/concepts/agents/copilot-in-jetbrains
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-on-github/copilot-for-github-tasks/create-a-pr-summary
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/use-your-own-api-keys
+- **Removed page**: https://docs.github.com/en/copilot/reference/copilot-usage-metrics/copilot-usage-metrics
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-sdk/setup/scaling
+- **Removed page**: https://docs.github.com/en/copilot/tutorials/customization-library/custom-agents/your-first-custom-agent
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/configure-personal-settings/configure-network-settings
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/copilot-cli/automate-copilot-cli/run-cli-programmatically
+- **Removed page**: https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-organization/manage-access
+
+### cursor-docs
+
+- **https://cursor.com/docs/customize-cursor** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a new 'Team MCP servers' feature for integrations and team collaboration.
+- **https://docs.cursor.com** (score 1, product): The documentation has been updated with new AI models, a new 'Mobile' section for Cloud Agents, and the removal of several older model versions. These changes directly impact the features and agent capabilities of Cursor.
+- **https://cursor.com/docs/api** (score 1, product): The documentation was updated to include a new 'Bugbot API' feature, including its purpose, availability for Enterprise teams, and specific rate limits. Additionally, new Admin API endpoints for Organization Members, Daily Usage, and Spending were added.
+- **https://cursor.com/learn** (score 1, product): The documentation has been updated to include a new section or interface element for 'Agent' capabilities, which is explicitly listed in the monitoring goal. It also introduces a 'Tokenizer' with a specific context limit of 200k, representing a change in technical capabilities/features.
+- **https://cursor.com/docs/get-started/quickstart** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/changelog** (score 1, product): The changelog was updated with several major feature releases including a new iOS mobile app, side chats, conversation search, and expanded agent capabilities like cloud agent hooks and Team MCPs.
+- **https://cursor.com/help** (score 1, pricing): The documentation was updated to include several new features, a new AI model (Grok 4.5), a mobile app, and new billing options for iOS, all of which fall under the user's monitoring goal.
+- **https://cursor.com/docs/agent/overview** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and removed the 'Semantic search' capability from the Agent tools section.
+- **https://cursor.com/docs/agent/agents-window** (score 1, deployment): A new 'Mobile' capability has been added to the Cloud Agents documentation, which directly relates to the goal of tracking agent capabilities and features.
+- **https://cursor.com/docs/agent/agent-review** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a change in the IDE integration settings for Agent Review starting in version 3.11.
+- **https://cursor.com/docs/agent/plan-mode** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/agent/prompting** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/agent/debug-mode** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/agent/design-mode** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/plugins** (score 1, integration): The documentation introduces significant new features regarding Cloud Agents, MCP (Model Context Protocol) server integration, and plugin management. Specifically, it adds a 'Mobile' section for Cloud Agents, introduces 'Default team marketplaces' for sharing MCP servers across the IDE and CLI, and updates plugin installation modes (Default Off, Default On, Required).
+- **https://cursor.com/docs/rules** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation. Other changes were ignored as they were technical image URL updates (cache busters).
+- **https://cursor.com/docs/skills** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a comprehensive list of 'Built-in Cursor skills' which details new agent capabilities and IDE integrations like /automate, /canvas, and /review.
+- **https://cursor.com/docs/subagents** (score 1, deployment): The documentation has been updated to include a new 'Mobile' capability for Cloud Agents, a new 'Model parameters' feature for subagents allowing fine-grained control over speed and reasoning effort, and references to a new model version 'gpt-5.6-sol'.
+- **https://cursor.com/docs/hooks** (score 1, deployment): The documentation was updated to include new agent capabilities, specifically adding support for several hooks in Cloud Agents and introducing a new 'Mobile' documentation section. It also details a change in how agents initialize (read-only environments).
+- **https://cursor.com/docs/mcp** (score 1, deployment): The documentation has been updated with significant new features regarding Cloud Agents, MCP (Model Context Protocol) integrations, and enterprise deployment options. Specifically, it introduces mobile support for agents, team marketplaces for MCP distribution, and new OAuth redirect configurations for the desktop app.
+- **https://cursor.com/docs/cloud-agent** (score 1, deployment): The documentation was updated to include a new native iOS app, expanded agent capabilities with a built-in MCP for diagnostics, and a significantly larger list of supported lifecycle hooks for cloud agents.
+- **https://cursor.com/docs/cloud-agent/setup** (score 1, deployment): A new 'Mobile' capability has been added to the Cloud Agents section, and there are functional updates to how pathing and context work within the environment configuration.
+- **https://cursor.com/docs/cloud-agent/capabilities** (score 1, integration): The documentation was updated to include a new 'Mobile' section for Cloud Agents and a significant new feature called 'Cursor Cloud MCP'. This new MCP server provides diagnostic capabilities for agents to inspect runs, environments, and transcripts. Additionally, new administrative controls for team-wide MCP configuration and marketplace integration were added.
+- **https://cursor.com/docs/cloud-agent/choose-runtime** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/cloud-agent/my-machines** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/cloud-agent/self-hosted-pool** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cloud-agent/self-hosted-cloud-run** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/bugbot** (score 1, deployment): The documentation has been updated with significant new features and integration details, including a new Bugbot API for enterprise teams, a new 'Mobile' section for Cloud Agents, and expanded support for Bitbucket Data Center.
+- **https://cursor.com/docs/cloud-agent/automations** (score 1, deployment): The documentation was updated to include Bitbucket Cloud support for Cloud Agent automations and a new 'Mobile' documentation section. It also reorganized and expanded the list of supported source control triggers for GitHub and GitLab.
+- **https://cursor.com/docs/cloud-agent/best-practices** (score 1, integration): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a significant new section regarding 'Rules' (User, Team, and Repo levels) that agents can now follow to enforce conventions.
+- **https://cursor.com/docs/security-agents** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation, which falls directly under the goal of tracking agent capabilities and features.
+- **https://cursor.com/docs/approval-agents** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/cloud-agent/security-network** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a significant restriction regarding 'Privacy Mode (Legacy)' support for agent features.
+- **https://cursor.com/docs/cloud-agent/settings** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/cloud-agent/api/endpoints** (score 1, pricing): The Admin API documentation has been updated to include new endpoints for managing organization members and viewing organization-level usage and spending data. These are new features for team/organization management.
+- **https://cursor.com/docs/integrations/slack** (score 1, product): The documentation for Cloud Agents and Slack integration has been significantly updated with new capabilities, including a new 'Mobile' section and several new command options for triggering agents on specific machines or self-hosted pools.
+- **https://cursor.com/docs/integrations/microsoft-teams** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/integrations/jira** (score 1, product): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a new model version ('gpt-5.6-sol') for agent commands, both of which fall under the user's goal of tracking agent capabilities and features.
+- **https://cursor.com/docs/integrations/linear** (score 1, deployment): A new 'Mobile' capability/feature has been added to the Cloud Agents documentation section. Other changes are just technical image hash updates which are ignored.
+- **https://cursor.com/docs/integrations/notion** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/integrations/github** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/integrations/gitlab** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/integrations/azure-devops** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and detailed feature support/limitations for the Azure DevOps integration, which directly relates to the goal of tracking features, agent capabilities, and integrations.
+- **https://cursor.com/docs/reference/sandbox** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cloud-agent/api/v0** (score 1, pricing): The Admin API documentation has been updated to include new endpoints for managing organization members and viewing organization-level usage and spending data. These are new features for team/organization management.
+- **https://cursor.com/docs/integrations/bitbucket** (score 1, deployment): The documentation has been updated to include support for Bitbucket Data Center (previously unsupported) and new deployment/networking options for Enterprise customers, such as AWS PrivateLink and Cloudflare Tunnels. Additionally, a new 'Mobile' capability for Cloud Agents was added to the navigation.
+- **https://cursor.com/docs/integrations/jetbrains** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and removed 'Codebase understanding' and 'semantic search' from the JetBrains IDE integration features.
+- **https://cursor.com/docs/integrations/xcode** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/reference/deeplinks** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/sdk/typescript** (score 1, deployment): The documentation has been updated with significant new agent capabilities and SDK features, including per-run environment variables for cloud agents, token usage tracking, and a new mobile documentation section.
+- **https://cursor.com/docs/sdk/python** (score 1, deployment): The documentation was updated with significant new features for the Cursor SDK and Cloud Agents, including a new 'Mobile' section, token usage tracking capabilities, and per-run environment variables for cloud agents.
+- **https://cursor.com/docs/cli/overview** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/cli/installation** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cli/using** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cli/changelog** (score 1, product): The documentation was updated with two major release changelogs (June 29 and July 6, 2026) covering new agent capabilities, model routing features, CLI integrations, and a new 'Mobile' documentation section for Cloud Agents.
+- **https://cursor.com/docs/cli/shell-mode** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cli/acp** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/cli/headless** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/learn/understanding-your-codebase** (score 1, product): The documentation for the 'Semantic search' feature has been significantly revised and renamed to 'Search by meaning'. A large section explaining the technical implementation (vector embeddings), research statistics on accuracy, and the rationale for combining search tools was removed and replaced with a more concise description of how the Agent integrates these tools.
+- **https://cursor.com/docs/models-and-pricing** (score 1, pricing): The documentation reflects significant changes to supported AI models, pricing structures, and agent capabilities. Specifically, it introduces new GPT-5.6 variants, Grok 4.5, and Claude Sonnet 5, while removing older versions. It also rebrands the 'Auto + Composer' usage pool to 'First-party models' and adds a new 'Mobile' capability for Cloud Agents.
+- **https://cursor.com/docs/models/claude-fable-5** (score 1, product): The documentation has been updated with significant changes to supported AI models, agent capabilities, and model availability, which directly aligns with the monitoring goal.
+- **https://cursor.com/docs/models/claude-opus-4-8** (score 1, deployment): The documentation has been updated with new AI models (GPT-5.6 variants and Grok 4.5), a new 'Mobile' capability for Cloud Agents, and the removal of 'Semantic search' from the Opus 4.8 agent toolset.
+- **https://cursor.com/docs/models/cursor-composer-2-5** (score 1, pricing): The documentation reflects significant updates to supported AI models, agent capabilities (mobile support), and pricing structures for first-party models.
+- **https://cursor.com/docs/models/gemini-3-1-pro** (score 1, deployment): The documentation has been updated with new AI models (GPT-5.6 variants and Grok 4.5), a new 'Mobile' capability for Cloud Agents, and the removal of 'Semantic search' from Gemini 3.1 Pro's supported agent tools.
+- **https://cursor.com/docs/models/gemini-3-5-flash** (score 1, deployment): The documentation reflects significant updates to supported AI models, the addition of a new mobile capability for Cloud Agents, and a change in the feature set for Gemini 3.5 Flash.
+- **https://cursor.com/downloads** (score 1, product): The page has been updated with significant new features including 'Composer 2.5', a new 'Terminal' agent interface, and 'Web' agent capabilities. The version has also been updated from 3.9 to 3.11, with new deployment options for Windows and Linux.
+- **https://cursor.com/docs/cloud-agent/api/webhooks** (score 1, pricing): The Admin API documentation has been updated to include new endpoints for managing organization members and viewing organization-level usage and spending data. These are new features for team/organization management.
+- **https://cursor.com/docs/account/teams/admin-api** (score 1, pricing): The documentation for the Admin API has been updated with new endpoints for organization management and significant clarifications regarding how 'Cursor Token Fees' are applied to specific models (Composer 2.5, Grok 4.5) and request types. This directly impacts the pricing and feature tracking goal.
+- **https://cursor.com/docs/account/organizations/organization-admin-api** (score 1, pricing): The Cursor Admin API documentation has been significantly expanded with new organization-level features, including a new read-only API scope, a new endpoint for listing organization members, and new endpoints for retrieving daily usage and spending data at the organization level. The membership sync functionality was also updated to support multi-team assignments.
+- **https://cursor.com/docs/account/teams/analytics-api** (score 1, pricing): The documentation was updated to include a new 'Bugbot review analytics' API endpoint, which provides detailed data on agent capabilities (Bugbot) including billed costs and finding resolutions. New organization-level admin API links were also added.
+- **https://cursor.com/docs/account/teams/ai-code-tracking-api** (score 1, pricing): The Admin API documentation has been updated to include new endpoints for managing organization members and viewing organization-level usage and spending data. These are new features for team/organization management.
+- **https://cursor.com/docs/account/enterprise/service-accounts** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and reflects a change in the navigation path for managing Service Accounts/API Keys.
+- **https://cursor.com/docs/enterprise/organization-groups** (score 1, integration): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a new 'Team marketplace access' feature for Enterprise Organization Groups, which falls under the user's interest in agent capabilities and IDE integrations/features.
+- **https://cursor.com/docs/agent/tools/browser** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation. Other changes were ignored as they were mechanical image URL updates.
+- **https://cursor.com/docs/configuration/worktrees** (score 1, deployment): The documentation was updated to include a new 'Mobile' capability for Cloud Agents, which falls directly under the user's goal of tracking agent capabilities and features. Other changes were minor terminology updates (changing 'Editor Window' to 'IDE').
+- **https://cursor.com/docs/account/teams/scim** (score 1, deployment): A new 'Mobile' capability or feature has been added to the Cloud Agents section of the documentation.
+- **https://cursor.com/docs/enterprise** (score 1, deployment): A new documentation section for 'Mobile' has been added under the Cloud Agents category, indicating a new feature or platform capability for Cursor's agents.
+- **https://cursor.com/docs/enterprise/baa** (score 1, deployment): The documentation was updated to include 'Mobile' and 'Cursor for iOS' as a new feature and deployment option for Cloud Agents.
+- **https://cursor.com/docs/enterprise/private-connectivity** (score 1, integration): The documentation was updated to include a new 'Mobile' capability for Cloud Agents and a new integration for Bitbucket Data Center, both of which fall under the user's interest in features, agent capabilities, and IDE integrations.
+- **New page**: https://cursor.com/docs/cloud-agent/mobile
+- **New page**: https://cursor.com/docs/bugbot/legacy-pricing
+- **New page**: https://cursor.com/docs/models/claude-sonnet-5
+- **New page**: https://cursor.com/docs/models/gpt-5-6-luna
+- **New page**: https://cursor.com/docs/models/gpt-5-6-sol
+- **New page**: https://cursor.com/docs/models/gpt-5-6-terra
+- **New page**: https://cursor.com/docs/models/grok-4-5
+- **New page**: https://cursor.com/docs/mcp/install-links
+- **New page**: https://cursor.com/docs/reference/plugins
+- **New page**: https://cursor.com/docs/reference/third-party-hooks
+- **New page**: https://cursor.com/docs/extension-api
+- **New page**: https://cursor.com/docs/cloud-agent/self-hosted-k8s
+- **New page**: https://cursor.com/docs-static/cloud-agents-openapi-v0.yaml
+- **New page**: https://cursor.com/docs/reference/permissions
+- **New page**: https://cursor.com/docs/cli/mcp
+- **Removed page**: https://cursor.com/docs/models/claude-4-6-sonnet
+- **Removed page**: https://cursor.com/docs/models/gpt-5-3-codex
+- **Removed page**: https://cursor.com/docs/models/grok-build-0-1
+- **Removed page**: https://cursor.com/docs/enterprise/model-and-integration-management
+- **Removed page**: https://cursor.com/docs/models/gpt-5-5
+- **Removed page**: https://cursor.com/docs/account/enterprise/cyber-safeguards
+- **Removed page**: https://cursor.com/docs/enterprise/pooled-usage
+- **Removed page**: https://cursor.com/docs/account/enterprise/billing-groups
+- **Removed page**: https://cursor.com/docs/enterprise/compliance-and-monitoring
+- **Removed page**: https://cursor.com/docs/enterprise/endpoint-security
+- **Removed page**: https://cursor.com/docs/agent/tools/search
+- **Removed page**: https://cursor.com/docs/enterprise/organizations
+- **Removed page**: https://cursor.com/docs/enterprise/network-configuration
+- **Removed page**: https://cursor.com/docs/enterprise/privacy-and-data-governance
+- **Removed page**: https://cursor.com/docs/enterprise/llm-safety-and-controls
+
+### factory-docs
+
+- **https://docs.factory.ai/cli/configuration/custom-droids** (score 1, product): The documentation has been significantly expanded to include new product features for 'subagents', including background task execution, task resumption, and enterprise-level autonomy and model controls.
+- **https://docs.factory.ai/api-reference/computers/create-a-computer.md** (score 1, product): The documentation for the 'Create a computer' endpoint has been updated to include significant new product features and deployment details, specifically the distinction between 'Managed' and 'BYOM' (Bring Your Own Machine) computers, and the addition of a new 'clonedRepoDirectories' property.
+- **https://docs.factory.ai/cli/configuration/mcp** (score 1, security): The documentation was updated to include a new configuration field ('resource') for OAuth deployment and a change to a CLI flag name, both of which represent functional product feature and deployment updates.
+- **https://docs.factory.ai/guides/building/droid-vps-setup** (score 3, deployment): The only changes detected are an update to the YouTube subscriber count and the addition of a thumbnail image placeholder. These are social media metrics and UI elements that do not affect the product features, pricing, deployment instructions, security, or competitive positioning specified in the goal.
+- **https://docs.factory.ai/cli/droid-exec/overview.md** (score 1, product): The documentation has been updated to include new product features and deployment controls, specifically regarding tool restriction and the ability to disable builtin skills via CLI, JSON-RPC, and the TypeScript SDK.
+- **https://docs.factory.ai/guides/droid-exec/code-review** (score 1, security): The documentation was updated with a significant new section regarding Authentication and Deployment. It details how to configure Factory API keys and GitHub/GitLab access, including security permissions and integration methods, which falls directly under the user's interest in deployment and security.
+- **New page**: https://docs.factory.ai/guides/skills/product-management.md
+- **New page**: https://docs.factory.ai/api-reference/computers/get-a-computer.md
+- **New page**: https://docs.factory.ai/api-reference/organization/list-enterprise-control-change-history.md
+- **New page**: https://docs.factory.ai/llms-full.txt
+- **New page**: https://docs.factory.ai/api-reference/computers/get-a-computer-by-name.md
+- **New page**: https://docs.factory.ai/benchmarks/agent-arena.md
+- **New page**: https://docs.factory.ai/cli/byok/google-gemini.md
+- **New page**: https://docs.factory.ai/cli/account/security.md
+- **New page**: https://docs.factory.ai/api-reference/sessions/list-sessions.md
+- **New page**: https://docs.factory.ai/guides/power-user/memory-management.md
+- **New page**: https://docs.factory.ai/api-reference/service-accounts/create-a-service-account-api-key.md
+- **New page**: https://docs.factory.ai/cli/byok/ollama.md
+- **New page**: https://docs.factory.ai/api-reference/automations/list-ci-repository-owners.md
+- **New page**: https://docs.factory.ai/onboarding/integrating-with-your-engineering-system/github-enterprise-server.md
+- **New page**: https://docs.factory.ai/api-reference/sessions/add-a-message-to-a-session.md
+- **New page**: https://docs.factory.ai/guides/power-user/token-efficiency
+- **New page**: https://docs.factory.ai/api-reference/computers/delete-a-computer.md
+- **New page**: https://docs.factory.ai/api-reference/computers/update-a-computer.md
+- **New page**: https://docs.factory.ai/api-reference/computers/create-a-computer-file-download.md
+- **New page**: https://docs.factory.ai/enterprise/llm-safety-and-agent-controls
+- **New page**: https://docs.factory.ai/api-reference/wiki/list-the-latest-wiki-runs.md
+- **New page**: https://docs.factory.ai/api-reference/organization/list-organization-users.md
+- **New page**: https://docs.factory.ai/changelog/1-9.md
+- **New page**: https://docs.factory.ai/guides/droid-exec/refactor-imports.md
+- **New page**: https://docs.factory.ai/api-reference/sessions/delete-a-session.md
+- **New page**: https://docs.factory.ai/enterprise.md
+- **Removed page**: https://docs.factory.ai/changelog/release-notes.md
+- **Removed page**: https://docs.factory.ai/cli/configuration/custom-slash-commands.md
+- **Removed page**: https://docs.factory.ai/cli/features/droid-computers.md
+- **Removed page**: https://docs.factory.ai/guides/hooks/git-workflows.md
+- **Removed page**: https://docs.factory.ai/enterprise/identity-sso-and-scim.md
+- **Removed page**: https://docs.factory.ai/features/missions/planning.md
+- **Removed page**: https://docs.factory.ai/cli/account/droid-shield-plus.md
+- **Removed page**: https://docs.factory.ai/models
+- **Removed page**: https://docs.factory.ai/web/getting-started/quickstart
+- **Removed page**: https://docs.factory.ai/guides/power-user/setup-checklist.md
+- **Removed page**: https://docs.factory.ai/cli/getting-started/how-to-talk-to-a-droid
+- **Removed page**: https://docs.factory.ai/cli/byok/ollama
+- **Removed page**: https://docs.factory.ai/features/missions/troubleshooting.md
+- **Removed page**: https://docs.factory.ai/api-reference/computers/refresh-a-computer.md
+- **Removed page**: https://docs.factory.ai/guides/hooks/logging-analytics
+- **Removed page**: https://docs.factory.ai/enterprise/network-and-deployment
+- **Removed page**: https://docs.factory.ai/cli/configuration/hooks-guide
+- **Removed page**: https://docs.factory.ai/cli/droid-exec/overview
+- **Removed page**: https://docs.factory.ai/cli/configuration/sandbox.md
+- **Removed page**: https://docs.factory.ai/cli/configuration/plugins
+- **Removed page**: https://docs.factory.ai/cli/configuration/settings.md
+- **Removed page**: https://docs.factory.ai/api-reference/sessions/get-a-session.md
+- **Removed page**: https://docs.factory.ai/cli/configuration/skills.md
+- **Removed page**: https://docs.factory.ai/cli/features/droid-computers-byom
+- **Removed page**: https://docs.factory.ai/guides/skills/automated-qa
+- **Removed page**: https://docs.factory.ai/changelog/1-10.md
+
+### coderabbit-docs
+
+- **https://docs.coderabbit.ai/api-reference/learnings-list** (score 1, integration): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the 'learnings' endpoint. This represents a significant expansion of developer-facing product features and integration support.
+- **https://docs.coderabbit.ai/api-reference/audit-logs** (score 1, security): The documentation has been updated to include new API code examples for 'audit-logs' across multiple programming languages (Python, JavaScript, Go, PHP, Java, Ruby). This represents a meaningful addition to the product's security and integration features, specifically regarding how users can programmatically access audit logs.
+- **https://docs.coderabbit.ai/api-reference/metrics-data-api** (score 1, pricing): The documentation was updated to include new API code examples for multiple languages, detailed error response schemas, and a new pricing-related restriction stating that API access requires an Enterprise plan subscription.
+- **https://docs.coderabbit.ai/api-reference/report-generate** (score 1, pricing): The documentation was updated to include new API code examples and error response definitions, including a specific pricing-related restriction for API access.
+- **https://docs.coderabbit.ai/api-reference/roles-create** (score 1, pricing): The documentation has been updated to include new API code examples for creating custom roles (e.g., 'Security Reviewer') across multiple programming languages. This represents a change in product features/integrations related to user management and security roles.
+- **https://docs.coderabbit.ai/api-reference/roles-delete** (score 1, pricing): The documentation has been updated to include new API code examples for deleting custom roles across multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby). This represents a meaningful addition to the product's developer features and integration capabilities.
+- **https://docs.coderabbit.ai/api-reference/roles-get** (score 1, pricing): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the 'Get Role Details' endpoint. This represents a significant expansion of the product's developer documentation and integration support.
+- **https://docs.coderabbit.ai/api-reference/roles-list** (score 1, pricing): The documentation has been updated to include new API code examples for multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby) for the 'roles' endpoint. This represents a significant expansion of the developer integration documentation.
+- **https://docs.coderabbit.ai/api-reference/roles-permissions** (score 1, security): The documentation has been updated to include new API integration examples across multiple programming languages (Python, JavaScript, PHP, Go, Java, and Ruby) for the 'roles/permissions' endpoint, which falls under the user's goal of tracking product features and integrations.
+- **https://docs.coderabbit.ai/api-reference/roles-update** (score 1, pricing): The documentation was updated to include new API code examples for updating custom roles across multiple programming languages (Python, JavaScript, PHP, Go, Java, Ruby). This represents a change in product features/integrations documentation.
+- **https://docs.coderabbit.ai/api-reference/users-list** (score 1, integration): The documentation has been updated to include new API integration examples for multiple programming languages (Python, JavaScript, Go, PHP, Java, and Ruby). This directly relates to the goal of tracking changes to product features and integrations.
+- **https://docs.coderabbit.ai/api-reference/users-change-roles** (score 1, pricing): The documentation was updated to include a new feature for self-hosted enterprise customers regarding workspace-wide role management and added detailed API error codes for seat management operations.
+- **https://docs.coderabbit.ai/api-reference/users-seat-assignment-mode** (score 1, pricing): The documentation was updated to include new API error codes and messages, specifically detailing restrictions related to subscriptions, self-hosted instances, and the deprecation of legacy API keys.
+- **https://docs.coderabbit.ai/api-reference/users-manage-seats** (score 1, pricing): The documentation has been updated to include new API error codes and rate limits, which are functional product features/specifications. Specifically, it introduces a deprecation notice for legacy API keys and defines specific rate limits (10 requests per 60 seconds) and batch sizes (500 users).
+- **https://docs.coderabbit.ai/cli/cli-with-self-hosted-CodeRabbit** (score 1, deployment): The documentation for the CodeRabbit CLI has been updated to include a new installation method via Homebrew, which is a relevant change to product features and technical integrations.
+- **https://docs.coderabbit.ai/cli/claude-code-integration** (score 1, product): The documentation for the Claude Code integration has been updated with new installation methods (Homebrew), new CLI commands and flags (e.g., --include-untracked), and a significant change in how configuration files are handled (switching from automatic reading of claude.md to a manual flag).
+- **https://docs.coderabbit.ai/cli/cursor-integration** (score 1, product): The CLI syntax for CodeRabbit has been significantly updated, changing from direct flags to a 'review' subcommand structure. New installation methods (Homebrew) and new functional flags (e.g., --include-untracked, --committed) were added, and the method for providing context files to the review process was changed.
+- **https://docs.coderabbit.ai/cli/codex-integration** (score 1, product): The documentation was updated to include new CLI commands and flags, specifically adding support for Homebrew installation and new review scopes like '--committed', '--uncommitted', and '--include-untracked'. These are functional changes to product features and integrations.
+- **https://docs.coderabbit.ai/cli/gemini-integration** (score 1, product): The CLI documentation has been updated with significant changes to product features and command syntax. Specifically, the base command has changed from 'coderabbit' to 'coderabbit review', new installation methods (Homebrew) have been added, and the logic for handling untracked files and authentication requirements has been updated.
+- **https://docs.coderabbit.ai/management/plans** (score 1, pricing): The documentation has significant updates to pricing plan limits, rate-limiting thresholds, and new feature limits for MCP servers and custom recipes.
+- **https://docs.coderabbit.ai/cli** (score 1, pricing): The documentation for the CodeRabbit CLI has been updated with significant new product features, including a new 'skills' command for coding agents, support for API-key authentication in headless environments, and expanded Git review scopes (committed, staged, and untracked files).
+- **https://docs.coderabbit.ai/pr-reviews/cicd-pipeline-analysis** (score 1, product): The documentation has been updated to replace 'CodeRabbit Review' with 'Change Stack', which represents a change in product features or naming conventions relevant to the user's goal.
+- **https://docs.coderabbit.ai/platforms/github-enterprise-server** (score 3, deployment): The changes consist of removing internal navigation links ('Navigate to header') and adding tracking parameters to a login URL. These are mechanical and technical updates that do not affect product features, pricing, integrations, security, or competitive positioning.
+- **https://docs.coderabbit.ai/management/usage-based-addon** (score 1, pricing): The documentation was updated to include a new feature/pricing mechanism for 'Large pull requests' (up to 300 files) which can now be reviewed on-demand using usage-based pricing. It also adds a note about billing arrangement restrictions for the pay-as-you-go toggle.
+- **https://docs.coderabbit.ai/reference/review-commands** (score 1, product): The documentation was updated to include a new configuration setting for 'Resolve Merge Conflicts' and specific usage requirements for the 'resolve' command. These represent functional changes to product features and configuration options, which fall within the monitoring goal.
+- **https://docs.coderabbit.ai/changelog** (score 1, pricing): The diff contains a significant update to the product changelog, introducing numerous new features, pricing/plan-based limits, and integrations that directly match the monitoring goal.
+- **https://docs.coderabbit.ai/reference/configuration** (score 1, integration): The documentation update introduces several new product features (autofix, fix-ci, merge conflict resolution, post-merge actions), a new integration (@e18e/eslint-plugin), and a new security-focused tool (Squawk). It also clarifies that certain advanced features require a 'Pro Plus' plan, which relates to pricing/positioning.
+- **New page**: https://docs.coderabbit.ai/agent
+- **New page**: https://docs.coderabbit.ai/agent/skills
+- **New page**: https://docs.coderabbit.ai/api
+- **New page**: https://docs.coderabbit.ai/api/workspace-api-tokens
+- **New page**: https://docs.coderabbit.ai/cli/headless-cli-integration
+- **New page**: https://docs.coderabbit.ai/knowledge-base
+- **New page**: https://docs.coderabbit.ai/slack-agent/knowledge-base
+- **New page**: https://docs.coderabbit.ai/guides/code-review-overview
+- **New page**: https://docs.coderabbit.ai/pr-reviews/walkthroughs
+- **New page**: https://docs.coderabbit.ai/configuration/auto-review
+- **New page**: https://docs.coderabbit.ai/platforms/bitbucket-cloud
+- **New page**: https://docs.coderabbit.ai/management/seat-assignment
+- **New page**: https://docs.coderabbit.ai/knowledge-base/multi-repo-analysis
+- **New page**: https://docs.coderabbit.ai/overview/pull-request-review
+- **New page**: https://docs.coderabbit.ai/platforms/overview
+- **New page**: https://docs.coderabbit.ai/overview/coderabbit-plan
+- **New page**: https://docs.coderabbit.ai/reference/caching
+- **New page**: https://docs.coderabbit.ai/guides/commands
+- **New page**: https://docs.coderabbit.ai/faq
+- **New page**: https://docs.coderabbit.ai/reference/glossary
+- **New page**: https://docs.coderabbit.ai/pr-reviews/change-stack
+- **New page**: https://docs.coderabbit.ai/pr-reviews/pre-merge-checks
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fself-hosted%2Foverview
+- **Removed page**: https://docs.coderabbit.ai/reference/caching.md
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fabout%2Fdata-usage
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fintegrations%2Fcode-graph-analysis
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fguides%2Fusage-cli
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fblog%2Fpre-merge-checks-built-in-and-custom-pr-enforced
+- **Removed page**: https://docs.coderabbit.ai/cli/cli-with-self-hosted-CodeRabbit.md
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fgetting-started%2Fconfigure-coderabbit
+- **Removed page**: https://docs.coderabbit.ai/overview/architecture.md
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fplatform%2Fintegration
+- **Removed page**: https://docs.coderabbit.ai/self-hosted/coderabbit-reverse-tunnel.md
+- **Removed page**: https://docs.coderabbit.ai/cli/index.md
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fcli%2Foverview
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fabout%2Fdata-usage.md
+- **Removed page**: https://docs.coderabbit.ai/integrations/issue-trackers
+- **Removed page**: https://docs.coderabbit.ai/platforms/github-com.md
+- **Removed page**: https://docs.coderabbit.ai/llms.txt
+- **Removed page**: https://docs.coderabbit.ai/login?redirect=%2Fintegrations%2Fknowledge-base
+- **Removed page**: https://docs.coderabbit.ai/cli/skills
+- **Removed page**: https://docs.coderabbit.ai/cli/wsl-windows
+- **Removed page**: https://docs.coderabbit.ai/cli/reference
+- **Removed page**: https://docs.coderabbit.ai/getting-started/yaml-configuration
+
+## Sales / Learning Impact
+
+No talk track updates needed this week.
+
+## Next Recommended Action
+
+Review the minor changes above if any look relevant. No action required otherwise.
